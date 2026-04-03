@@ -3,6 +3,8 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+const brands = ["Rocco Forte", "JW Marriott", "Peninsula Bangkok", "Sofitel", "Kloster Eberbach", "Ruby Hotels"];
+
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -11,7 +13,7 @@ export default function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background grid */}
+      {/* Grid */}
       <div className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(var(--gold) 1px, transparent 1px), linear-gradient(90deg, var(--gold) 1px, transparent 1px)`,
@@ -20,21 +22,14 @@ export default function Hero() {
       />
 
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-[0.08]"
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-[0.07]"
         style={{ background: "radial-gradient(circle, var(--gold) 0%, transparent 70%)" }}
       />
 
-      {/* Floating orbs */}
       <motion.div
-        animate={{ y: [0, -30, 0], rotate: [0, 5, 0] }}
+        animate={{ y: [0, -30, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full opacity-[0.04] blur-3xl"
-        style={{ background: "var(--gold)" }}
-      />
-      <motion.div
-        animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-1/3 left-1/4 w-96 h-96 rounded-full opacity-[0.03] blur-3xl"
         style={{ background: "var(--gold)" }}
       />
 
@@ -72,17 +67,18 @@ export default function Hero() {
           Serial Founder · Luxury Hospitality · AI-Powered Ventures
         </motion.p>
 
-        {/* Stats row */}
+        {/* Real stats */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="flex items-center justify-center gap-12 mt-16"
+          className="flex flex-wrap items-center justify-center gap-8 md:gap-12 mt-16"
         >
           {[
             { num: "15+", label: "Years Hospitality" },
             { num: "8", label: "Active Ventures" },
-            { num: "3", label: "Live Products" },
+            { num: "220", label: "Staff Led" },
+            { num: "G7", label: "Summit Events" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="font-display text-4xl md:text-5xl font-light text-[var(--gold)]">{stat.num}</div>
@@ -91,7 +87,7 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,6 +107,25 @@ export default function Hero() {
           >
             Let&apos;s Talk
           </a>
+        </motion.div>
+
+        {/* Brand trust bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="mt-20"
+        >
+          <div className="text-[9px] tracking-[0.4em] uppercase text-[var(--muted)] mb-6">
+            Career Built Across
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            {brands.map((brand) => (
+              <span key={brand} className="text-[10px] tracking-[0.2em] uppercase text-[var(--muted)] opacity-50 hover:opacity-100 transition-opacity duration-300">
+                {brand}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </motion.div>
 

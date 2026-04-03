@@ -8,53 +8,77 @@ const ventures = [
     id: "01",
     name: "HiddenJobber",
     tagline: "The discreet professional switchboard",
-    description: "Anonymized matching for professionals ready for change. First match, then interest, then reveal. Anti-bias architecture from day one.",
+    description: "Anonymized matching for professionals ready for change. First match, then interest, then reveal. Anti-bias architecture. Premium matchmaking — not a job board.",
     tags: ["Future of Work", "Matching", "Privacy-First"],
     status: "Building",
-    color: "#1a3a4a",
+    color: "#0d1f2d",
+    url: null,
   },
   {
     id: "02",
-    name: "GrabCasual 2.0",
-    tagline: "Hospitality workforce, reimagined",
-    description: "Built from 15 years of operating luxury venues. Solving real staffing problems with digital intelligence — fast shifts, verified talent, zero friction.",
-    tags: ["Hospitality", "Workforce", "SaaS"],
+    name: "MaxiJobber",
+    tagline: "Hospitality talent — on demand",
+    description: "The missing infrastructure layer for hospitality staffing. AI-matched talent with verified experience. Built by someone who spent 15 years on the other side of the hire.",
+    tags: ["Hospitality", "Talent", "AI-Matching"],
     status: "Building",
-    color: "#2a1a0a",
+    color: "#1a1208",
+    url: null,
   },
   {
     id: "03",
-    name: "Graffiti Urban",
-    tagline: "Where urban art meets platform",
-    description: "Community, discovery, and commerce for the street art world. Culture meets technology — built for the people who actually live it.",
-    tags: ["Culture", "Community", "Commerce"],
-    status: "Live",
-    color: "#1a0a2a",
+    name: "GrabCasual 2.0",
+    tagline: "Daily workforce management, reimagined",
+    description: "The original: a Ruby on Rails startup founded in Bangkok in 2018. Real investors. Real operators. Real pain solved. Now being rebuilt with AI at the core.",
+    tags: ["Hospitality", "SaaS", "Workforce"],
+    status: "Rebuilding",
+    color: "#0a1a12",
+    url: null,
   },
   {
     id: "04",
-    name: "Zahndrache Dido",
-    tagline: "A character universe for kids",
-    description: "Dido — the dental dragon. A full brand universe: product, story, app, and character world. Premium kids brand with emotional depth.",
-    tags: ["Kids", "Brand", "IP"],
-    status: "Concept",
-    color: "#0a2a1a",
+    name: "Graffiti Urban",
+    tagline: "Where urban art meets platform",
+    description: "Community, discovery, and commerce for the street art world. Connecting artists, walls, and collectors. Culture as infrastructure.",
+    tags: ["Culture", "Community", "Commerce"],
+    status: "Live",
+    color: "#150a22",
+    url: null,
   },
   {
     id: "05",
+    name: "Zahndrache Dido",
+    tagline: "A character universe for young minds",
+    description: "Dido — the little dental dragon. A complete brand universe: product, story, app. Premium kids IP designed with parents in mind and children at heart.",
+    tags: ["Kids", "Brand IP", "App"],
+    status: "Concept",
+    color: "#0a1a10",
+    url: null,
+  },
+  {
+    id: "06",
+    name: "Stay4Skills",
+    tagline: "Skill-based hospitality experiences",
+    description: "A new concept where staying means learning. Hospitality venues as skill platforms. Merging tourism with professional development.",
+    tags: ["Hospitality", "Education", "Travel"],
+    status: "Concept",
+    color: "#1a0a0a",
+    url: null,
+  },
+  {
+    id: "07",
     name: "Classified",
-    tagline: "Stealth venture #1",
-    description: "Under development. Releasing Q3 2026.",
+    tagline: "Stealth venture",
+    description: "In development. Releasing 2026.",
     tags: ["Classified"],
     status: "Stealth",
     color: "#111",
     classified: true,
   },
   {
-    id: "06",
+    id: "08",
     name: "Classified",
-    tagline: "Stealth venture #2",
-    description: "Under development. Releasing Q4 2026.",
+    tagline: "Stealth venture",
+    description: "In development. Releasing 2026.",
     tags: ["Classified"],
     status: "Stealth",
     color: "#111",
@@ -65,8 +89,9 @@ const ventures = [
 const statusColors: Record<string, string> = {
   Live: "#4ade80",
   Building: "#C9A84C",
+  Rebuilding: "#e8c96a",
   Concept: "#60a5fa",
-  Stealth: "#666",
+  Stealth: "#444",
 };
 
 export default function Ventures() {
@@ -76,11 +101,9 @@ export default function Ventures() {
 
   return (
     <section id="ventures" ref={ref} className="relative py-40 px-6">
-      {/* Gold line */}
       <div className="gold-line max-w-7xl mx-auto mb-24" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="grid lg:grid-cols-2 gap-10 mb-20">
           <div>
             <motion.div
@@ -99,7 +122,7 @@ export default function Ventures() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-6xl md:text-7xl font-light leading-[1.05]"
             >
-              Eight ventures.
+              Eight bets.
               <br />
               <span className="italic text-gold-gradient">One architect.</span>
             </motion.h2>
@@ -111,24 +134,23 @@ export default function Ventures() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-[var(--muted)] leading-relaxed self-end text-base max-w-md"
           >
-            Each venture is rooted in deep domain expertise. Not passion projects — calculated bets on
-            underserved markets where Falko has unfair structural advantages.
+            Each venture targets a market Falko has operated in for years. Not ideas from a whiteboard —
+            platforms built on institutional domain knowledge and real operator pain.
           </motion.p>
         </div>
 
-        {/* Venture grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {ventures.map((v, i) => (
             <motion.div
               key={v.id}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.05 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.05 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
               onMouseEnter={() => setHovered(v.id)}
               onMouseLeave={() => setHovered(null)}
-              className={`relative group p-8 border cursor-pointer transition-all duration-500 overflow-hidden ${
+              className={`relative group p-6 border cursor-pointer transition-all duration-500 overflow-hidden ${
                 v.classified
-                  ? "border-[var(--border)] opacity-50 hover:opacity-70"
+                  ? "border-[var(--border)] opacity-40 hover:opacity-60"
                   : "border-[var(--border)] hover:border-[var(--gold)]"
               }`}
               style={{
@@ -137,53 +159,38 @@ export default function Ventures() {
                   : "var(--surface)",
               }}
             >
-              {/* Classified overlay */}
               {v.classified && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-[10px] tracking-[0.5em] uppercase text-[var(--gold)] border border-[var(--gold)] px-4 py-2">
-                      Classified
-                    </div>
+                  <div className="text-[9px] tracking-[0.5em] uppercase text-[var(--gold)] border border-[var(--gold)] px-3 py-2">
+                    Classified
                   </div>
                 </div>
               )}
 
-              {/* Top line animation */}
               {!v.classified && (
                 <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--gold)] group-hover:w-full transition-all duration-700" />
               )}
 
               <div className={v.classified ? "opacity-0" : ""}>
-                {/* ID + Status */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-5">
                   <span className="font-display text-xs tracking-[0.3em] text-[var(--muted)]">{v.id}</span>
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: statusColors[v.status] }}
-                    />
-                    <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: statusColors[v.status] }}>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: statusColors[v.status] }} />
+                    <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: statusColors[v.status] }}>
                       {v.status}
                     </span>
                   </div>
                 </div>
 
-                {/* Name */}
-                <h3 className="font-display text-3xl font-light mb-2 group-hover:text-[var(--gold)] transition-colors duration-300">
+                <h3 className="font-display text-2xl font-light mb-1 group-hover:text-[var(--gold)] transition-colors duration-300">
                   {v.name}
                 </h3>
-                <p className="text-xs tracking-[0.15em] text-[var(--muted)] uppercase mb-4">{v.tagline}</p>
+                <p className="text-[10px] tracking-[0.15em] text-[var(--muted)] uppercase mb-4">{v.tagline}</p>
+                <p className="text-xs text-[var(--muted)] leading-relaxed mb-5">{v.description}</p>
 
-                {/* Description */}
-                <p className="text-sm text-[var(--muted)] leading-relaxed mb-6">{v.description}</p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {v.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[9px] tracking-[0.25em] uppercase px-3 py-1 border border-[var(--border)] text-[var(--muted)]"
-                    >
+                    <span key={tag} className="text-[8px] tracking-[0.2em] uppercase px-2 py-1 border border-[var(--border)] text-[var(--muted)]">
                       {tag}
                     </span>
                   ))}
