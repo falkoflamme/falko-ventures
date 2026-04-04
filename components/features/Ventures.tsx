@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import PitchDeckModal from "./PitchDeckModal";
 
 const ventures = [
   {
@@ -118,6 +119,7 @@ export default function Ventures() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [hovered, setHovered] = useState<string | null>(null);
+  const [modal, setModal] = useState<{ venture: string; deckUrl: string } | null>(null);
 
   return (
     <section id="ventures" ref={ref} className="relative py-32 px-6">
@@ -232,10 +234,8 @@ export default function Ventures() {
                 >
                   <span>Live →</span>
                 </a>
-                <a
-                  href={v.deckUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => setModal({ venture: v.name, deckUrl: v.deckUrl })}
                   className="flex items-center gap-1.5 text-[9px] tracking-[0.25em] uppercase px-3 py-2 border border-[var(--border)] text-[var(--muted)] hover:border-[var(--gold)] hover:text-[var(--gold)] transition-all duration-300"
                 >
                   <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
@@ -243,12 +243,21 @@ export default function Ventures() {
                     <path d="M3.5 3.5h3M3.5 5.5h3M3.5 7h1.5" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
                   </svg>
                   Pitch Deck
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Gated Pitch Deck Modal */}
+      {modal && (
+        <PitchDeckModal
+          venture={modal.venture}
+          deckUrl={modal.deckUrl}
+          onClose={() => setModal(null)}
+        />
+      )}
     </section>
   );
 }
