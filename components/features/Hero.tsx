@@ -110,13 +110,13 @@ export default function Hero() {
               href="#ventures"
               className="text-xs tracking-[0.3em] uppercase px-8 py-4 bg-[var(--gold)] text-black font-medium hover:bg-[var(--gold-light)] transition-colors duration-300"
             >
-              Das Portfolio
+              Explore Portfolio
             </a>
             <a
               href="#contact"
               className="text-xs tracking-[0.3em] uppercase px-8 py-4 border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)] hover:text-black transition-all duration-300"
             >
-              Pitch Deck anfordern
+              Request Pitch Deck
             </a>
           </motion.div>
         </motion.div>

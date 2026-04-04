@@ -90,7 +90,7 @@ export default function Calculator() {
           transition={{ duration: 0.7, delay: 0.25 }}
           className="text-[var(--muted)] text-sm leading-relaxed max-w-md mb-14"
         >
-          Wähle wie viele Ventures du im Portfolio siehst. Konservativ: 5% SOM-Capture. Exit: 8× ARR.
+          Select how many ventures you see in the portfolio. Conservative: 5% SOM capture. Exit: 8× ARR multiple.
         </motion.p>
 
         <motion.div

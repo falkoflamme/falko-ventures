@@ -76,7 +76,7 @@ export default function PitchDeckModal({ venture, deckUrl, onClose }: Props) {
             <div className="text-[9px] tracking-[0.5em] uppercase text-[var(--gold)] mb-2">Investor Deck</div>
             <h2 className="font-display text-3xl font-light text-[var(--foreground)]">{venture}</h2>
             <p className="text-xs text-[var(--muted)] mt-2 leading-relaxed">
-              Kurze Info — dann öffnet sich das Deck sofort.
+              Quick details — the deck opens immediately after.
             </p>
           </div>
 
@@ -111,13 +111,13 @@ export default function PitchDeckModal({ venture, deckUrl, onClose }: Props) {
                 className="w-full bg-[var(--background)] border border-[var(--border)] focus:border-[var(--gold)] text-[var(--foreground)] px-4 py-3 text-sm outline-none transition-colors duration-300 appearance-none cursor-pointer"
                 style={{ color: role ? "var(--foreground)" : "var(--muted)" }}
               >
-                <option value="" disabled>Rolle auswählen</option>
+                <option value="" disabled>Select role</option>
                 <option value="Investor">Investor / VC</option>
                 <option value="Angel">Business Angel</option>
                 <option value="Co-Founder">Co-Founder</option>
-                <option value="Partner">Strategischer Partner</option>
+                <option value="Partner">Strategic Partner</option>
                 <option value="Press">Press / Media</option>
-                <option value="Other">Sonstiges</option>
+                <option value="Other">Other</option>
               </select>
               <svg className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <path d="M2 4l3 3 3-3" stroke="var(--muted)" strokeWidth="1.2" strokeLinecap="round" />
@@ -131,12 +131,12 @@ export default function PitchDeckModal({ venture, deckUrl, onClose }: Props) {
               disabled={loading}
               className="w-full py-4 bg-[var(--gold)] text-black text-xs tracking-[0.3em] uppercase font-medium hover:bg-[var(--gold-light)] disabled:opacity-60 transition-all duration-300 mt-2"
             >
-              {loading ? "Öffne Deck..." : "Pitch Deck öffnen →"}
+              {loading ? "Opening deck..." : "Open Pitch Deck →"}
             </button>
           </form>
 
           <p className="text-[9px] text-[var(--muted)] mt-4 text-center leading-relaxed">
-            Keine Spam. Nur Falko persönlich wenn es passt.
+            No spam. Falko personally follows up when there&apos;s a fit.
           </p>
         </motion.div>
       </motion.div>

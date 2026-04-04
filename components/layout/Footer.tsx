@@ -64,14 +64,14 @@ export default function Footer() {
                 LinkedIn
               </a>
               <a
-                href="mailto:falkic.flame@gmail.com"
+                href="mailto:flamme.falko@gmail.com"
                 className="text-xs text-[var(--muted)] hover:text-[var(--gold)] transition-colors duration-300 tracking-wide inline-flex items-center gap-2"
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="2" y="4" width="20" height="16" rx="2"/>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                 </svg>
-                falkic.flame@gmail.com
+                flamme.falko@gmail.com
               </a>
               <a
                 href="#contact"
@@ -89,7 +89,7 @@ export default function Footer() {
             Frankfurt, Germany · {new Date().getFullYear()}
           </div>
           <div className="text-[10px] tracking-[0.2em] uppercase text-[var(--muted)]">
-            Built by Falko Flamme × Claude
+            Built with Claude AI
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 
 const timeline = [
-  { year: "2006", role: "Auszubildender", place: "Rocco Forte · Villa Kennedy Frankfurt" },
+  { year: "2006", role: "Apprentice", place: "Rocco Forte · Villa Kennedy Frankfurt" },
   { year: "2010", role: "F&B Operations", place: "JW Marriott · Thailand" },
   { year: "2015", role: "F&B Manager", place: "Sofitel · Bangkok" },
   { year: "2017", role: "F&B Manager", place: "The Peninsula · Bangkok" },

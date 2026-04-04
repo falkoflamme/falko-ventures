@@ -75,11 +75,25 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="text-[var(--muted)] leading-relaxed text-base max-w-md mb-10"
+              className="text-[var(--muted)] leading-relaxed text-base max-w-md mb-8"
             >
-              If you&apos;re an investor, co-founder, or strategic partner who sees the same opportunities —
-              let&apos;s talk. Direct, honest, no fluff.
+              If you see what I see — let&apos;s talk. Direct, honest, no fluff.
             </motion.p>
+
+            {/* Investment structure */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.32 }}
+              className="p-5 border border-[var(--border)] bg-[var(--surface)] mb-8"
+            >
+              <div className="text-[9px] tracking-[0.5em] uppercase text-[var(--gold)] mb-3">Investment Structure</div>
+              <div className="space-y-2 text-xs text-[var(--muted)] leading-relaxed">
+                <p><span className="text-[var(--foreground)]">RITLOOP Ventures</span> is the holding entity. A studio investment gives exposure to all six ventures.</p>
+                <p>Individual venture rounds are also possible.</p>
+                <p className="text-[var(--gold)]">Currently raising: €250K–€500K for 12-month runway across the top 3 ventures.</p>
+              </div>
+            </motion.div>
 
             {/* Info */}
             <motion.div

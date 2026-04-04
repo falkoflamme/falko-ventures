@@ -4,14 +4,14 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const feed = [
-  { date: "Apr 4", venture: "HiddenJobber", item: "Kandidaten-Onboarding Flow v2 deployed" },
-  { date: "Apr 3", venture: "WallsUp", item: "Mapbox Karte — 3 neue Wand-Pins Frankfurt Nordend" },
-  { date: "Apr 3", venture: "RITLOOP", item: "Dido Kapitel 3 Audio-Script finalisiert" },
-  { date: "Apr 2", venture: "MaxiJobber", item: "Admin Panel Magic Link Auth live" },
-  { date: "Apr 1", venture: "Stay4Skill", item: "Bangkok Exchange #4 bestätigt — Sommelier" },
-  { date: "Mar 31", venture: "Insider Keys", item: "Fog-of-War Map Prototype — erste Demo" },
-  { date: "Mar 30", venture: "HiddenJobber", item: "RLS Row-Level Security — DSGVO-Audit bestanden" },
-  { date: "Mar 29", venture: "RITLOOP", item: "DPMA Markenanmeldung RITLOOP eingereicht" },
+  { date: "Apr 4", venture: "HiddenJobber", item: "Candidate onboarding flow v2 deployed" },
+  { date: "Apr 3", venture: "WallsUp", item: "Mapbox map — 3 new wall pins Frankfurt Nordend" },
+  { date: "Apr 3", venture: "RITLOOP", item: "Dido chapter 3 audio script finalized" },
+  { date: "Apr 2", venture: "MaxiJobber", item: "Admin panel magic link auth live" },
+  { date: "Apr 1", venture: "Stay4Skill", item: "Bangkok exchange #4 confirmed — sommelier" },
+  { date: "Mar 31", venture: "Insider Keys", item: "Fog-of-war map prototype — first demo" },
+  { date: "Mar 30", venture: "HiddenJobber", item: "RLS row-level security — GDPR audit passed" },
+  { date: "Mar 29", venture: "RITLOOP", item: "DPMA trademark application filed — RITLOOP" },
 ];
 
 const ventureColors: Record<string, string> = {
@@ -67,7 +67,7 @@ export default function ShippedFeed() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="text-[var(--muted)] text-sm leading-relaxed max-w-sm mt-6"
             >
-              Across 6 ventures. Jeden Tag. Das ist kein Pitch — das ist ein Betrieb.
+              Across 6 ventures. Every day. This isn't a pitch — this is an operation.
             </motion.p>
           </div>
 

@@ -10,16 +10,16 @@ const ventures = [
     name: "HiddenJobber",
     tagline: "Der verborgene Talentmarkt",
     description:
-      "70% der besten Fachkräfte sind nie offiziell auf dem Markt. HiddenJobber macht diesen verborgenen Markt erstmals strukturiert zugänglich. Anti-Bias. Erst Passung — dann Interesse — dann Freigabe.",
+      "70% of top professionals are never officially on the market. HiddenJobber makes this hidden talent pool accessible for the first time. Anti-bias by design. Match first — reveal later.",
     tags: ["Future of Work", "Privacy-First", "SaaS"],
     status: "Building",
     accent: "#3730a3",
     liveUrl: "https://hiddenjobber-app.vercel.app/",
     deckUrl: "/pitch-decks/HiddenJobber_PitchDeck.html",
     metrics: [
-      { label: "TAM", value: "€28 Mrd." },
-      { label: "Model", value: "SaaS €490–€1.490/mo" },
-      { label: "Seed Ask", value: "€250K–€500K" },
+      { label: "Traction", value: "47 waitlist signups" },
+      { label: "TAM", value: "€28B EU Recruiting" },
+      { label: "Model", value: "SaaS €490–€1,490/mo" },
     ],
   },
   {
@@ -27,16 +27,16 @@ const ventures = [
     name: "RITLOOP",
     tagline: "Tune Your Rituals",
     description:
-      "Die weltweit erste Habit-Plattform für den einzigen universellen Moment des menschlichen Alltags. 8 Milliarden Menschen. Zweimal täglich. Phase 1: Dido der Zahndrache — Kids 3–6. Patent angemeldet.",
+      "Turning toothbrushing into the world's most powerful daily habit. Starting with kids — scaling to adults. Hardware patent filed.",
     tags: ["Kids", "Habit Tech", "D2C + B2B"],
     status: "Building",
     accent: "#16a34a",
     liveUrl: "https://ritloop-kids.vercel.app",
     deckUrl: "/pitch-decks/RITLOOP_Investment_Deck_2026.html",
     metrics: [
-      { label: "Target", value: "4 Mio. Familien DACH" },
+      { label: "Traction", value: "10 test families active" },
       { label: "Model", value: "D2C + Tonies + B2B" },
-      { label: "Hardware", value: "RITLOOP Speaker — Patent" },
+      { label: "Hardware", value: "Patent filed" },
     ],
   },
   {
@@ -44,15 +44,15 @@ const ventures = [
     name: "WallsUp",
     tagline: "Walls Up. Tags Down.",
     description:
-      "€200 Mio. kostet Vandalismus deutsche Städte jährlich. WallsUp bricht diesen Kreislauf: Vandalisierte Wände werden zu bezahlten Kunstwerken. 6 Live Stakeholder-Flows. MVP live in Frankfurt.",
+      "Vandalism costs German cities €200M per year. WallsUp breaks the cycle: vandalized walls become paid artworks. 6 live stakeholder flows. MVP live in Frankfurt.",
     tags: ["Urban Art", "CSR", "Marketplace"],
     status: "Live",
     accent: "#15803d",
     liveUrl: "https://www.wallsup.de/",
     deckUrl: "/pitch-decks/WallsUp_PitchDeck_2026.html",
     metrics: [
-      { label: "TAM", value: "€1,2 Mrd. (OOH + CSR)" },
-      { label: "Live", value: "14+ Wände Frankfurt" },
+      { label: "Traction", value: "14 live wall pins Frankfurt" },
+      { label: "TAM", value: "€1.2B (OOH + CSR DE)" },
       { label: "Pre-Seed Ask", value: "€150K" },
     ],
   },
@@ -61,16 +61,16 @@ const ventures = [
     name: "MaxiJobber",
     tagline: "Qualität. Direkt. Sofort.",
     description:
-      "7,5 Mio. Minijobber in Deutschland — kein Marktführer für Fachkräfte. Agenturen kassieren 40–60% Aufschlag. MaxiJobber beendet das. €25/h Minimum. Manuell verifiziert. Direktkontakt. 0% Provision.",
+      "7.5M minijob workers in Germany — no market leader for quality. Agencies charge 40–60% markup. MaxiJobber ends that. €25/h minimum. Manually verified. Direct contact. Zero commission.",
     tags: ["Hospitality", "Talent", "Marketplace"],
     status: "Building",
     accent: "#1d4ed8",
     liveUrl: "https://maxijobber.vercel.app/",
     deckUrl: "/pitch-decks/MaxiJobber_Pitch_Deck.html",
     metrics: [
-      { label: "TAM", value: "7,5 Mio. Minijobber" },
-      { label: "Burn Rate", value: "~€50/Monat" },
-      { label: "ARR Potenzial", value: "€3,48M (50K Profile)" },
+      { label: "Traction", value: "82% launch-ready" },
+      { label: "TAM", value: "7.5M minijob workers DE" },
+      { label: "Burn Rate", value: "~€50/month" },
     ],
   },
   {
@@ -78,15 +78,15 @@ const ventures = [
     name: "Stay4Skill",
     tagline: "Fly & Shine",
     description:
-      "Skill ist die Währung. Stay ist die Belohnung. Der Koch ist schon in Bangkok — das Hotel nebenan braucht genau sein Talent. Stay4Skill verbindet sie. Barter Exchange: Skill gegen Übernachtung.",
+      "Skill is the currency. Stay is the reward. The chef is already in Bangkok — the hotel next door needs exactly that talent. Stay4Skill connects them. Barter exchange: skill for accommodation.",
     tags: ["Hospitality", "Barter", "Travel"],
     status: "Live",
     accent: "#b45309",
     liveUrl: "https://stay4skill.vercel.app/",
     deckUrl: "/pitch-decks/stay4skill_investor_pitch_deck.html",
     metrics: [
-      { label: "TAM", value: "$4,7T Hospitality" },
-      { label: "Live", value: "8 Profile, 3+ Exchanges" },
+      { label: "Traction", value: "8 profiles, 4 exchanges" },
+      { label: "TAM", value: "$4.7T global hospitality" },
       { label: "Seed Ask", value: "€150K" },
     ],
   },
@@ -95,16 +95,16 @@ const ventures = [
     name: "Insider Keys",
     tagline: "Secret spots, curated by your host",
     description:
-      "Das Wissen jedes Hotelmitarbeiters über die besten versteckten Spots — gamifiziert für jeden Gast. Fog-of-War Karte, Compass-Navigation, Haptics, Staff Voice Notes. Browser-nativ. Kein App-Download.",
+      "Every hotel staff member knows the best hidden spots in the city. Insider Keys makes that knowledge immortal. Fog-of-war map, compass navigation, haptics, staff voice notes. Browser-native. No app download.",
     tags: ["Hospitality", "Gamification", "SaaS B2B"],
     status: "Concept",
     accent: "#0f766e",
     liveUrl: "https://insider-keys.vercel.app/",
     deckUrl: "/pitch-decks/INSIDER_KEYS_PITCH_DECK.html",
     metrics: [
-      { label: "Model", value: "SaaS €150–€350/Hotel/mo" },
-      { label: "Signal", value: "72% Gäste wollen Insider-Tipps" },
-      { label: "Tech", value: "Browser-native APIs" },
+      { label: "Traction", value: "Concept complete" },
+      { label: "Model", value: "SaaS €150–€350/hotel/mo" },
+      { label: "Signal", value: "72% guests want insider tips" },
     ],
   },
 ];
@@ -157,8 +157,8 @@ export default function Ventures() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-[var(--muted)] leading-relaxed self-end text-base max-w-md"
           >
-            Jedes Venture basiert auf Jahren echter Industrie-Erfahrung — nicht Whiteboard-Ideen,
-            sondern Plattformen gebaut auf institutionellem Domain-Wissen und echtem Operator-Schmerz.
+            Every venture is built on years of real industry experience — not whiteboard ideas,
+            but platforms rooted in institutional domain knowledge and genuine operator pain.
           </motion.p>
         </div>
 

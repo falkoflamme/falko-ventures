@@ -42,8 +42,8 @@ export default function Pipeline() {
               transition={{ duration: 0.7, delay: 0.25 }}
               className="text-[var(--muted)] leading-relaxed text-base max-w-md mb-10"
             >
-              Weitere Ventures entstehen im RITLOOP Studio. Jedes basiert auf einem echten Problem
-              in einem Markt den Falko von innen kennt. Mehr kommt.
+              More ventures are in development at the RITLOOP Studio. Each one rooted in a real
+              problem in a market Falko knows from the inside. More is coming.
             </motion.p>
 
             {/* Besserwisser preview */}
@@ -63,7 +63,7 @@ export default function Pipeline() {
                 </span>
               </div>
               <p className="text-xs text-[var(--muted)] leading-relaxed mb-4">
-                Quiz & Wissens-App. Bereits live. Weitere Details folgen.
+                Quiz &amp; knowledge app. Live. Built to test gamified learning mechanics.
               </p>
               <a
                 href="https://besserwisser-app.vercel.app/"
@@ -107,10 +107,10 @@ export default function Pipeline() {
 
             <div className="text-center mt-6">
               <div className="font-display text-2xl font-light text-[var(--foreground)] mb-2">
-                Neue Ventures im Studio
+                New ventures entering the studio
               </div>
               <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--muted)]">
-                Stay tuned — mehr kommt.
+                Stay tuned — more is coming.
               </div>
             </div>
           </motion.div>
