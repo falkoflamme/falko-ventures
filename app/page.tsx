@@ -5,6 +5,7 @@ import AIThesis from "@/components/features/AIThesis";
 import Ventures from "@/components/features/Ventures";
 import SocialProof from "@/components/features/SocialProof";
 import Numbers from "@/components/features/Numbers";
+import Calculator from "@/components/features/Calculator";
 import Pipeline from "@/components/features/Pipeline";
 import Vision from "@/components/features/Vision";
 import Contact from "@/components/features/Contact";
@@ -20,6 +21,7 @@ export default function Home() {
       <Ventures />
       <SocialProof />
       <Numbers />
+      <Calculator />
       <Pipeline />
       <Vision />
       <Contact />
