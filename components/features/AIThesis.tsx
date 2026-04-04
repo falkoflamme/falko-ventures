@@ -111,6 +111,56 @@ export default function AIThesis() {
           </motion.div>
         </div>
 
+        {/* Cost comparison bars */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.45 }}
+          className="mb-16 p-8 border border-[var(--border)] bg-[var(--surface)]"
+        >
+          <div className="text-[9px] tracking-[0.5em] uppercase text-[var(--muted)] mb-8">Capital Efficiency</div>
+
+          {/* Traditional bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-[var(--muted)]">Traditional Startup</span>
+              <span className="text-[10px] tracking-[0.2em] text-[var(--muted)] font-light">€50,000 / mo</span>
+            </div>
+            <div className="h-2 w-full bg-[var(--border)] rounded-none overflow-hidden">
+              <motion.div
+                className="h-full rounded-none"
+                style={{ background: "rgba(240,236,228,0.15)" }}
+                initial={{ width: "0%" }}
+                animate={inView ? { width: "100%" } : {}}
+                transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+          </div>
+
+          {/* Falko bar */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] tracking-[0.25em] uppercase text-[var(--gold)]">Falko + AI</span>
+              <span className="text-[10px] tracking-[0.2em] text-[var(--gold)] font-light">€50 / mo</span>
+            </div>
+            <div className="h-2 w-full bg-[var(--border)] rounded-none overflow-hidden">
+              <motion.div
+                className="h-full rounded-none"
+                style={{ background: "var(--gold)" }}
+                initial={{ width: "0%" }}
+                animate={inView ? { width: "0.1%" } : {}}
+                transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+          </div>
+
+          {/* Stat */}
+          <div className="flex items-baseline gap-3">
+            <span className="font-display text-4xl font-light text-gold-gradient">1,000×</span>
+            <span className="text-xs text-[var(--muted)] tracking-wide">more capital efficient</span>
+          </div>
+        </motion.div>
+
         {/* Big quote */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
