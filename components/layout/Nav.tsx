@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { label: "About", href: "#about" },
   { label: "Ventures", href: "#ventures" },
+  { label: "Products", href: "#pitch-decks" },
   { label: "Vision", href: "#vision" },
   { label: "Contact", href: "#contact" },
 ];
@@ -19,6 +20,12 @@ export default function Nav() {
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   return (
     <>
@@ -55,10 +62,10 @@ export default function Nav() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="#ventures"
               className="text-xs tracking-[0.2em] uppercase px-5 py-2 border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)] hover:text-black transition-all duration-300"
             >
-              Pitch Deck
+              Pitch Decks
             </a>
           </div>
 
@@ -83,7 +90,7 @@ export default function Nav() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-40 bg-[var(--background)] flex flex-col items-center justify-center gap-6"
           >
             {links.map((link, i) => (
               <motion.a
@@ -92,12 +99,22 @@ export default function Nav() {
                 onClick={() => setMenuOpen(false)}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ delay: i * 0.07 }}
                 className="font-display text-4xl tracking-widest uppercase text-[var(--foreground)] hover:text-[var(--gold)] transition-colors"
               >
                 {link.label}
               </motion.a>
             ))}
+            <motion.a
+              href="#ventures"
+              onClick={() => setMenuOpen(false)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: links.length * 0.07 }}
+              className="mt-4 text-xs tracking-[0.3em] uppercase px-8 py-3 border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)] hover:text-black transition-all duration-300"
+            >
+              Pitch Decks
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

@@ -3,19 +3,37 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 
+// → formspree.io/new → kostenlos registrieren → Form erstellen → URL hier eintragen
+const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
+
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // Placeholder — wire to Supabase or Resend later
-    await new Promise((r) => setTimeout(r, 1200));
-    setSent(true);
-    setLoading(false);
+    setError(false);
+    const form = e.currentTarget;
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: new FormData(form),
+      });
+      if (res.ok) {
+        setSent(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -125,6 +143,13 @@ export default function Contact() {
                   />
                   <div className="absolute bottom-0 left-0 w-0 h-px bg-[var(--gold)] group-focus-within:w-full transition-all duration-500" />
                 </div>
+
+                {error && (
+                  <p className="text-xs text-red-400 tracking-wide">
+                    Something went wrong. Email directly:{" "}
+                    <a href="mailto:falkic.flame@gmail.com" className="underline">falkic.flame@gmail.com</a>
+                  </p>
+                )}
 
                 <button
                   type="submit"

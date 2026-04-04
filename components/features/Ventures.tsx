@@ -12,7 +12,8 @@ const ventures = [
     tags: ["Future of Work", "Matching", "Privacy-First"],
     status: "Building",
     color: "#0d1f2d",
-    url: null,
+    pitchDeck: "/pitch-decks/HiddenJobber_PitchDeck_2026.pptx",
+    deckType: "pptx",
   },
   {
     id: "02",
@@ -22,50 +23,44 @@ const ventures = [
     tags: ["Hospitality", "Talent", "AI-Matching"],
     status: "Building",
     color: "#1a1208",
-    url: null,
+    pitchDeck: "/pitch-decks/MaxiJobber_Super_Pitch_Deck.pptx",
+    deckType: "pptx",
   },
   {
     id: "03",
-    name: "GrabCasual 2.0",
-    tagline: "Daily workforce management, reimagined",
-    description: "The original: a Ruby on Rails startup founded in Bangkok in 2018. Real investors. Real operators. Real pain solved. Now being rebuilt with AI at the core.",
-    tags: ["Hospitality", "SaaS", "Workforce"],
-    status: "Rebuilding",
-    color: "#0a1a12",
-    url: null,
-  },
-  {
-    id: "04",
-    name: "Graffiti Urban",
+    name: "WallsUp",
     tagline: "Where urban art meets platform",
     description: "Community, discovery, and commerce for the street art world. Connecting artists, walls, and collectors. Culture as infrastructure.",
     tags: ["Culture", "Community", "Commerce"],
     status: "Live",
     color: "#150a22",
-    url: null,
+    pitchDeck: "/pitch-decks/WallsUp_PitchDeck_2026.pptx",
+    deckType: "pptx",
+  },
+  {
+    id: "04",
+    name: "Insider Keys",
+    tagline: "Exclusive access, reimagined",
+    description: "A premium membership experience built around insider knowledge and curated access. Where the right connections open the right doors.",
+    tags: ["Premium", "Access", "Community"],
+    status: "Building",
+    color: "#1a0f08",
+    pitchDeck: "/pitch-decks/INSIDER_KEYS_PITCH_DECK.html",
+    deckType: "html",
   },
   {
     id: "05",
-    name: "Zahndrache Dido",
-    tagline: "A character universe for young minds",
-    description: "Dido — the little dental dragon. A complete brand universe: product, story, app. Premium kids IP designed with parents in mind and children at heart.",
-    tags: ["Kids", "Brand IP", "App"],
-    status: "Concept",
-    color: "#0a1a10",
-    url: null,
-  },
-  {
-    id: "06",
-    name: "Stay4Skills",
+    name: "Stay4Skill",
     tagline: "Skill-based hospitality experiences",
     description: "A new concept where staying means learning. Hospitality venues as skill platforms. Merging tourism with professional development.",
     tags: ["Hospitality", "Education", "Travel"],
-    status: "Concept",
+    status: "Building",
     color: "#1a0a0a",
-    url: null,
+    pitchDeck: "/pitch-decks/stay4skill_investor_pitch_deck.html",
+    deckType: "html",
   },
   {
-    id: "07",
+    id: "06",
     name: "Classified",
     tagline: "Stealth venture",
     description: "In development. Releasing 2026.",
@@ -75,7 +70,7 @@ const ventures = [
     classified: true,
   },
   {
-    id: "08",
+    id: "07",
     name: "Classified",
     tagline: "Stealth venture",
     description: "In development. Releasing 2026.",
@@ -122,7 +117,7 @@ export default function Ventures() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-6xl md:text-7xl font-light leading-[1.05]"
             >
-              Eight bets.
+              Five ventures.
               <br />
               <span className="italic text-gold-gradient">One architect.</span>
             </motion.h2>
@@ -134,8 +129,7 @@ export default function Ventures() {
             transition={{ duration: 0.7, delay: 0.3 }}
             className="text-[var(--muted)] leading-relaxed self-end text-base max-w-md"
           >
-            Each venture targets a market Falko has operated in for years. Not ideas from a whiteboard —
-            platforms built on institutional domain knowledge and real operator pain.
+            Five active ventures. Two in stealth. Each one targets a market Falko has operated in for years — not ideas from a whiteboard, but platforms built on institutional domain knowledge and real operator pain.
           </motion.p>
         </div>
 
@@ -148,7 +142,7 @@ export default function Ventures() {
               transition={{ duration: 0.7, delay: 0.05 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
               onMouseEnter={() => setHovered(v.id)}
               onMouseLeave={() => setHovered(null)}
-              className={`relative group p-6 border cursor-pointer transition-all duration-500 overflow-hidden ${
+              className={`relative group p-6 border transition-all duration-500 overflow-hidden flex flex-col ${
                 v.classified
                   ? "border-[var(--border)] opacity-40 hover:opacity-60"
                   : "border-[var(--border)] hover:border-[var(--gold)]"
@@ -171,7 +165,7 @@ export default function Ventures() {
                 <div className="absolute top-0 left-0 w-0 h-0.5 bg-[var(--gold)] group-hover:w-full transition-all duration-700" />
               )}
 
-              <div className={v.classified ? "opacity-0" : ""}>
+              <div className={`flex flex-col flex-1 ${v.classified ? "opacity-0" : ""}`}>
                 <div className="flex items-center justify-between mb-5">
                   <span className="font-display text-xs tracking-[0.3em] text-[var(--muted)]">{v.id}</span>
                   <div className="flex items-center gap-1.5">
@@ -188,13 +182,31 @@ export default function Ventures() {
                 <p className="text-[10px] tracking-[0.15em] text-[var(--muted)] uppercase mb-4">{v.tagline}</p>
                 <p className="text-xs text-[var(--muted)] leading-relaxed mb-5">{v.description}</p>
 
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 mb-6">
                   {v.tags.map((tag) => (
                     <span key={tag} className="text-[8px] tracking-[0.2em] uppercase px-2 py-1 border border-[var(--border)] text-[var(--muted)]">
                       {tag}
                     </span>
                   ))}
                 </div>
+
+                {v.pitchDeck && (
+                  <div className="mt-auto">
+                    <a
+                      href={v.pitchDeck}
+                      target={v.deckType === "html" ? "_blank" : undefined}
+                      download={v.deckType === "pptx" ? true : undefined}
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-2 text-[9px] tracking-[0.25em] uppercase text-[var(--gold)] border border-[var(--gold)] border-opacity-30 px-3 py-2 hover:bg-[var(--gold)] hover:text-black transition-all duration-300"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M5 1v6M2 5l3 3 3-3M1 9h8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      View Pitch
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

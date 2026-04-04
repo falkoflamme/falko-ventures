@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxiJobber — Investor Pitch Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bk:#1a1a1a;--bk-l:#2a2a2a;--yw:#F5C518;--yw-d:#D4A80E;
+  --wh:#ffffff;--gy-l:#f9f9f9;--gy-m:#e5e5e5;--gy-d:#888;--gy-xd:#555;
+  --red:#cc3333;--green:#22aa44;
+  --font-h:'Syne',Arial Black,sans-serif;--font-b:'DM Sans',Arial,sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bk);color:var(--wh);font-family:var(--font-b);overflow-x:hidden}
+
+/* ── Slide System ── */
+.slide{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(2rem,6vw,5rem);position:relative;overflow:hidden;
+}
+.slide--dark{background:var(--bk)}
+.slide--light{background:var(--wh);color:var(--bk)}
+.slide--yellow{background:var(--yw);color:var(--bk)}
+.slide--bk-l{background:var(--bk-l)}
+
+/* ── Top accent bar ── */
+.slide::before{
+  content:'';position:absolute;top:0;left:0;width:100%;height:4px;
+  background:var(--yw);z-index:2;
+}
+.slide--yellow::before{background:var(--bk)}
+.slide--light::before{background:transparent}
+
+/* ── Left accent for light slides ── */
+.slide--light::after{
+  content:'';position:absolute;top:0;left:0;width:6px;height:100%;
+  background:var(--yw);z-index:2;
+}
+
+/* ── Typography ── */
+.label{
+  font-family:var(--font-h);font-size:clamp(0.65rem,1.2vw,0.8rem);
+  letter-spacing:0.35em;text-transform:uppercase;margin-bottom:1rem;
+  font-weight:700;
+}
+.label--yw{color:var(--yw)}
+.label--bk{color:var(--bk)}
+
+h1{font-family:var(--font-h);font-weight:800;line-height:1.05;margin-bottom:1.5rem}
+h2{font-family:var(--font-h);font-weight:700;line-height:1.15;margin-bottom:1.5rem}
+
+.hero-title{font-size:clamp(3rem,8vw,6rem);letter-spacing:0.08em}
+.hero-sub{font-size:clamp(3rem,8vw,6rem);letter-spacing:0.08em;color:var(--yw)}
+.big-statement{font-size:clamp(1.8rem,4vw,2.8rem)}
+.section-title{font-size:clamp(1.4rem,3vw,2rem)}
+.body-text{font-size:clamp(0.9rem,1.5vw,1.1rem);line-height:1.7;color:var(--gy-d);max-width:48rem}
+.body-text--dark{color:var(--gy-xd)}
+
+/* ── Grid Layouts ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem}
+@media(max-width:900px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+}
+@media(min-width:901px) and (max-width:1100px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+}
+
+/* ── Cards ── */
+.card{
+  padding:1.5rem;border-radius:0;position:relative;
+}
+.card--dark{
+  background:var(--bk-l);border:1px solid #333;
+}
+.card--black{
+  background:var(--bk);border:2px solid var(--bk);
+  box-shadow:4px 4px 0 var(--bk);
+}
+.card--light{
+  background:var(--gy-l);border:2px solid var(--bk);
+  box-shadow:4px 4px 0 var(--bk);
+}
+.card--yellow{
+  background:var(--yw);color:var(--bk);
+  border:2px solid var(--bk);box-shadow:4px 4px 0 var(--bk);
+}
+.card--outline{
+  background:transparent;border:2px solid var(--gy-xd);
+}
+
+.card-title{
+  font-family:var(--font-h);font-weight:700;font-size:0.95rem;
+  margin-bottom:0.5rem;letter-spacing:0.05em;
+}
+.card-title--yw{color:var(--yw)}
+.card-desc{font-size:0.85rem;line-height:1.6;color:var(--gy-d)}
+.card-desc--dark{color:var(--gy-xd)}
+
+.card-icon{
+  width:2rem;height:2rem;margin-bottom:0.75rem;display:flex;
+  align-items:center;justify-content:center;font-size:1.3rem;
+}
+
+/* ── Stats ── */
+.stat{text-align:left}
+.stat-value{
+  font-family:var(--font-h);font-weight:800;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.1;
+}
+.stat-label{font-size:0.75rem;color:var(--gy-d);margin-top:0.25rem;letter-spacing:0.03em}
+
+/* ── Comparison ── */
+.compare-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  padding:0.75rem 0;border-bottom:1px solid #333;
+  align-items:center;
+}
+.compare-before{color:var(--gy-d);font-size:0.95rem;display:flex;align-items:center;gap:0.5rem}
+.compare-after{color:var(--wh);font-family:var(--font-h);font-weight:700;font-size:0.95rem;display:flex;align-items:center;gap:0.5rem}
+.icon-x{color:var(--gy-d);font-weight:700}
+.icon-check{color:var(--yw);font-weight:700}
+
+/* ── Table ── */
+.comp-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:0.9rem}
+.comp-table th,.comp-table td{padding:0.65rem 1rem;text-align:left;border-bottom:1px solid var(--gy-m)}
+.comp-table th{font-family:var(--font-h);font-weight:700;font-size:0.8rem;letter-spacing:0.05em}
+.comp-table .col-mj{background:#fff9e0;font-weight:700;color:var(--bk)}
+.comp-table .col-header-mj{background:var(--yw);color:var(--bk);font-family:var(--font-h)}
+.comp-table .row-label{font-family:var(--font-h);font-weight:700}
+
+/* ── Progress Bar ── */
+.progress-bar{
+  height:8px;background:var(--gy-m);width:100%;margin:1.5rem 0;position:relative;
+}
+.progress-fill{
+  height:100%;background:var(--yw);width:82%;position:relative;
+}
+.progress-label{
+  position:absolute;right:-2.5rem;top:-0.6rem;font-family:var(--font-h);
+  font-weight:700;font-size:0.8rem;color:var(--bk);
+}
+
+/* ── Steps ── */
+.step{display:flex;gap:0.75rem;align-items:flex-start;margin-bottom:0.6rem}
+.step-num{
+  flex-shrink:0;width:1.6rem;height:1.6rem;display:flex;align-items:center;
+  justify-content:center;font-family:var(--font-h);font-weight:700;
+  font-size:0.7rem;border-radius:50%;
+}
+.step-num--yw{background:var(--yw);color:var(--bk)}
+.step-num--bk{background:var(--bk);color:var(--yw)}
+.step-text{font-size:0.9rem;line-height:1.5}
+
+/* ── Flywheel ── */
+.flywheel{display:flex;align-items:center;gap:0;margin-top:2rem;flex-wrap:wrap}
+.fly-box{
+  flex:1;min-width:8rem;padding:1.2rem 0.8rem;text-align:center;
+  background:var(--bk-l);border:1px solid #333;
+}
+.fly-box--yw{background:var(--yw);color:var(--bk);border-color:var(--yw)}
+.fly-arrow{
+  font-size:1.2rem;color:var(--yw);padding:0 0.3rem;flex-shrink:0;
+}
+.fly-label{font-family:var(--font-h);font-weight:700;font-size:0.8rem;letter-spacing:0.05em}
+.fly-desc{font-size:0.7rem;color:var(--gy-d);margin-top:0.25rem}
+.fly-box--yw .fly-desc{color:var(--bk)}
+
+/* ── Channel badges ── */
+.channels{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
+.channel{
+  display:flex;align-items:center;gap:0.5rem;font-size:0.85rem;
+}
+.channel-name{font-family:var(--font-h);font-weight:700}
+.channel-target{font-size:0.7rem;color:var(--gy-d)}
+
+/* ── Scenario bars ── */
+.scenario{padding:1.2rem 1.5rem;margin-bottom:1rem;display:grid;grid-template-columns:1fr;gap:0.3rem}
+.scenario--a{background:var(--gy-l);border-left:4px solid var(--gy-d)}
+.scenario--b{background:var(--gy-m);border-left:4px solid var(--bk)}
+.scenario--c{background:var(--yw);border:2px solid var(--bk);border-left:6px solid var(--bk)}
+.scenario-label{font-family:var(--font-h);font-weight:700;font-size:0.7rem;letter-spacing:0.15em;margin-bottom:0.3rem}
+.scenario-metrics{display:flex;gap:2rem;flex-wrap:wrap}
+.scenario-metric .val{font-family:var(--font-h);font-weight:800;font-size:1.3rem}
+.scenario-metric .lbl{font-size:0.65rem;color:var(--gy-xd);letter-spacing:0.03em}
+
+/* ── Exit rows ── */
+.exit-row{
+  display:grid;grid-template-columns:2fr 3fr 1.5fr;gap:1rem;
+  padding:1rem 1.2rem;margin-bottom:0.5rem;align-items:center;
+}
+.exit-row--highlight{background:var(--yw);color:var(--bk)}
+.exit-row--dark{background:var(--bk-l)}
+.exit-buyer{font-family:var(--font-h);font-weight:700;font-size:0.95rem}
+.exit-why{font-size:0.85rem;color:var(--gy-d)}
+.exit-row--highlight .exit-why{color:var(--bk)}
+.exit-type{font-family:var(--font-h);font-weight:700;font-size:0.75rem;color:var(--yw);text-align:right;letter-spacing:0.05em}
+.exit-row--highlight .exit-type{color:var(--bk)}
+
+/* ── Q&A ── */
+.qa-item{margin-bottom:2rem}
+.qa-q{font-family:var(--font-h);font-weight:700;color:var(--yw);font-size:1.05rem;margin-bottom:0.4rem}
+.qa-a{font-size:0.9rem;color:var(--gy-m);line-height:1.6}
+
+/* ── Ask rows ── */
+.ask-row{
+  display:grid;grid-template-columns:1fr 3fr;gap:1.5rem;padding:1.2rem 1.5rem;
+  margin-bottom:0.5rem;align-items:center;
+}
+.ask-row--highlight{background:var(--yw);color:var(--bk)}
+.ask-row--dark{background:var(--bk-l)}
+.ask-label{font-family:var(--font-h);font-weight:700;font-size:1rem}
+.ask-row--highlight .ask-label{color:var(--bk)}
+.ask-row--dark .ask-label{color:var(--yw)}
+.ask-desc{font-size:0.9rem;line-height:1.5}
+.ask-row--dark .ask-desc{color:var(--gy-m)}
+
+/* ── Roadmap ── */
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem;position:relative}
+.roadmap::before{
+  content:'';position:absolute;top:1rem;left:5%;right:5%;height:2px;
+  background:var(--gy-xd);z-index:0;
+}
+.rm-card{position:relative;z-index:1;text-align:center}
+.rm-dot{
+  width:1rem;height:1rem;border-radius:50%;margin:0 auto 0.75rem;
+  border:2px solid var(--yw);
+}
+.rm-dot--active{background:var(--yw)}
+.rm-when{font-family:var(--font-h);font-weight:700;font-size:0.7rem;letter-spacing:0.15em;margin-bottom:0.5rem}
+.rm-body{
+  background:var(--bk-l);padding:1rem;text-align:left;min-height:12rem;
+}
+.rm-body--active{border:2px solid var(--yw)}
+.rm-title{font-family:var(--font-h);font-weight:700;font-size:1rem;margin-bottom:0.75rem}
+.rm-items{font-size:0.8rem;color:var(--gy-m);line-height:1.8}
+@media(max-width:900px){
+  .roadmap{grid-template-columns:1fr 1fr}
+  .roadmap::before{display:none}
+  .compare-row{grid-template-columns:1fr}
+  .exit-row{grid-template-columns:1fr}
+  .ask-row{grid-template-columns:1fr}
+}
+
+/* ── Cost Row ── */
+.cost-row{
+  display:grid;grid-template-columns:0.4fr 2fr 1fr 2fr;gap:1rem;
+  padding:0.8rem 1rem;background:var(--bk-l);margin-bottom:0.4rem;
+  align-items:center;
+}
+.cost-icon{font-size:1.2rem;color:var(--yw);text-align:center}
+.cost-item{font-size:0.95rem}
+.cost-val{font-family:var(--font-h);font-weight:800;font-size:1.3rem;color:var(--yw);text-align:center}
+.cost-note{font-size:0.8rem;color:var(--gy-d)}
+
+/* ── Bottom Bar ── */
+.bottom-bar{
+  background:var(--yw);padding:1rem clamp(2rem,6vw,5rem);
+  font-family:var(--font-h);font-weight:700;color:var(--bk);
+  letter-spacing:0.2em;font-size:clamp(0.7rem,1.2vw,0.9rem);
+  position:absolute;bottom:0;left:0;width:100%;
+}
+
+/* ── Built list ── */
+.built-item{display:flex;align-items:center;gap:0.4rem;font-size:0.85rem;margin-bottom:0.3rem}
+.built-check{color:var(--green);font-weight:700;font-size:0.8rem}
+.next-arrow{color:var(--yw);font-weight:700}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.slide>*{animation:fadeUp 0.6s ease both}
+.slide>*:nth-child(2){animation-delay:0.1s}
+.slide>*:nth-child(3){animation-delay:0.2s}
+.slide>*:nth-child(4){animation-delay:0.3s}
+.slide>*:nth-child(5){animation-delay:0.4s}
+
+/* ── Subtle grain texture ── */
+.slide--dark::after,.slide--bk-l::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+.slide--dark>*,.slide--bk-l>*{position:relative;z-index:1}
+.slide--light::after{z-index:0}
+.slide--light>*{position:relative;z-index:1}
+
+/* ── Nav dots ── */
+.nav{
+  position:fixed;right:1.2rem;top:50%;transform:translateY(-50%);z-index:100;
+  display:flex;flex-direction:column;gap:0.5rem;
+}
+.nav-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--gy-xd);
+  border:none;cursor:pointer;transition:all 0.3s;padding:0;
+}
+.nav-dot:hover,.nav-dot.active{background:var(--yw);transform:scale(1.4)}
+@media(max-width:700px){.nav{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav class="nav" id="nav"></nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 1 — COVER -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s1">
+  <h1 class="hero-title" style="margin-bottom:0">MAXI</h1>
+  <h1 class="hero-sub" style="margin-top:-0.3em">JOBBER.</h1>
+  <p style="font-size:clamp(1rem,1.8vw,1.3rem);color:var(--gy-d);margin-top:1.5rem">Die Plattform für qualifizierte Fachkräfte im Minijob.</p>
+  <p style="font-size:0.85rem;color:var(--gy-xd);margin-top:1rem">Investor Pitch Deck · 2026 · Pre-Seed</p>
+  <div class="bottom-bar">QUALITÄT. DIREKT. SOFORT.</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 2 — THE OPPORTUNITY -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--yellow" id="s2">
+  <p class="label label--bk">Die Chance</p>
+  <h1 class="big-statement" style="font-size:clamp(2rem,5vw,3.2rem);max-width:50rem">7,5 Millionen Minijobber in Deutschland — und kein einziger Marktführer für qualifizierte Fachkräfte.</h1>
+  <p style="font-size:clamp(1rem,1.5vw,1.15rem);margin-top:1.5rem;color:var(--bk)">MaxiJobber besetzt diese Lücke. Kostenlos. Direkt. Ab 25€/h.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 3 — PROBLEM -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s3">
+  <p class="label label--yw">Das Problem</p>
+  <h2 class="big-statement">Fachkräfte werden wie<br>Aushilfen behandelt.</h2>
+  <div class="grid-2">
+    <div class="card card--dark">
+      <div class="card-icon">✕</div>
+      <div class="card-title" style="color:var(--wh)">Agenturen kassieren 40–60%</div>
+      <div class="card-desc">Zeitarbeitsfirmen nehmen den Großteil. Die Fachkraft sieht fast nichts davon.</div>
+    </div>
+    <div class="card card--dark">
+      <div class="card-icon">✕</div>
+      <div class="card-title" style="color:var(--wh)">Jobbörsen liefern Masse</div>
+      <div class="card-desc">100 Bewerbungen, 0 Qualität. Unternehmen verlieren Zeit und Vertrauen.</div>
+    </div>
+    <div class="card card--dark">
+      <div class="card-icon">✕</div>
+      <div class="card-title" style="color:var(--wh)">Kein Direktkontakt möglich</div>
+      <div class="card-desc">Immer ein Middleman. Immer ein Ticket. Nie eine echte Verbindung.</div>
+    </div>
+    <div class="card card--dark">
+      <div class="card-icon">✕</div>
+      <div class="card-title" style="color:var(--wh)">Minijob = billig? Falsch.</div>
+      <div class="card-desc">Das Modell ist gut. Nur die Umsetzung ist kaputt. 538€ steuerfrei ist attraktiv.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 4 — WHY NOW -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s4">
+  <p class="label label--yw">Warum Jetzt</p>
+  <h2 class="section-title">Vier Kräfte treffen gleichzeitig aufeinander.</h2>
+  <div style="margin-top:2rem;max-width:52rem">
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:1rem 1.5rem;align-items:baseline">
+      <div class="stat-value" style="color:var(--bk)">630.000</div>
+      <div><strong style="font-family:var(--font-h)">offene Stellen in Gastro & Handwerk</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Fachkräftemangel auf Rekordniveau</span></div>
+      
+      <div class="stat-value" style="color:var(--bk)">538€</div>
+      <div><strong style="font-family:var(--font-h)">steuerfrei pro Monat seit 2022</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Minijob-Reform macht das Modell attraktiver</span></div>
+      
+      <div class="stat-value" style="color:var(--bk)">78%</div>
+      <div><strong style="font-family:var(--font-h)">der KMU ohne digitale Recruiting-Lösung</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Analog suchende Betriebe sind der Normalfall</span></div>
+      
+      <div class="stat-value" style="color:var(--bk)">7,5M</div>
+      <div><strong style="font-family:var(--font-h)">Minijobber in Deutschland</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Riesiger Markt, kein Category Leader</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 5 — SOLUTION -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--yellow" id="s5">
+  <p class="label label--bk">Die Lösung</p>
+  <h1 class="big-statement" style="font-size:clamp(2.2rem,5vw,3.4rem)">Nicht jeder kommt rein.<br>Du schon.</h1>
+  <div class="grid-3" style="margin-top:2.5rem">
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-icon">🛡</div>
+      <div class="card-title card-title--yw">Geprüfte Qualität</div>
+      <div class="card-desc" style="color:var(--gy-m)">Manuelle Verifizierung.<br>25€/h Minimum.<br>Keine Aushilfen.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-icon">📞</div>
+      <div class="card-title card-title--yw">Direktkontakt</div>
+      <div class="card-desc" style="color:var(--gy-m)">WhatsApp, Telefon, E-Mail.<br>Kein Ticket-System.<br>Kein Middleman.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-icon">€</div>
+      <div class="card-title card-title--yw">Kostenlos. Für alle.</div>
+      <div class="card-desc" style="color:var(--gy-m)">Kein Aufschlag.<br>Keine Provision.<br>Keine versteckten Kosten.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 6 — HOW IT WORKS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s6">
+  <p class="label label--yw">So Funktioniert Es</p>
+  <h2 class="section-title">Beide Seiten gewinnen. Das ist das System.</h2>
+  <div class="grid-2">
+    <div class="card card--black" style="color:var(--wh);padding:2rem">
+      <p class="label label--yw" style="margin-bottom:1.5rem">Für Fachkräfte</p>
+      <div class="step"><span class="step-num step-num--yw">01</span><span class="step-text" style="color:var(--gy-m)">Profil in 5 Minuten erstellen</span></div>
+      <div class="step"><span class="step-num step-num--yw">02</span><span class="step-text" style="color:var(--gy-m)">Manuelle Prüfung in 24h</span></div>
+      <div class="step"><span class="step-num step-num--yw">03</span><span class="step-text" style="color:var(--gy-m)">Profil geht live</span></div>
+      <div class="step"><span class="step-num step-num--yw">04</span><span class="step-text" style="color:var(--gy-m)">Unternehmen kommen auf dich zu</span></div>
+      <div class="step"><span class="step-num step-num--yw">05</span><span class="step-text" style="color:var(--gy-m)">Du entscheidest — du verdienst</span></div>
+      <p style="margin-top:1.5rem;font-family:var(--font-h);color:var(--yw);font-size:0.85rem;font-weight:700">538€/Monat steuerfrei</p>
+    </div>
+    <div class="card card--light" style="padding:2rem">
+      <p class="label label--bk" style="margin-bottom:1.5rem">Für Unternehmen</p>
+      <div class="step"><span class="step-num step-num--bk">01</span><span class="step-text">Profile durchsuchen — kein Login</span></div>
+      <div class="step"><span class="step-num step-num--bk">02</span><span class="step-text">Fachkraft auswählen</span></div>
+      <div class="step"><span class="step-num step-num--bk">03</span><span class="step-text">Anfrage stellen</span></div>
+      <div class="step"><span class="step-num step-num--bk">04</span><span class="step-text">Direktkontakt per WhatsApp/Tel</span></div>
+      <div class="step"><span class="step-num step-num--bk">05</span><span class="step-text">Minijob-Vertrag direkt abschließen</span></div>
+      <p style="margin-top:1.5rem;font-family:var(--font-h);color:var(--bk);font-size:0.85rem;font-weight:700">0€ Aufschlag — 0€ Provision</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 7 — WHY DIFFERENT -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s7" style="padding-bottom:4rem">
+  <p class="label label--yw">Warum MaxiJobber anders ist</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;max-width:52rem">
+    <h3 style="font-family:var(--font-h);font-size:1.1rem;color:var(--gy-d)">VORHER</h3>
+    <h3 style="font-family:var(--font-h);font-size:1.1rem;color:var(--yw)">MIT MAXIJOBBER</h3>
+  </div>
+  <div style="max-width:52rem">
+    <div class="compare-row"><span class="compare-before"><span class="icon-x">✕</span> Agentur mit 40% Aufschlag</span><span class="compare-after"><span class="icon-check">✓</span> Direktkontakt, 0% Aufschlag</span></div>
+    <div class="compare-row"><span class="compare-before"><span class="icon-x">✕</span> Ungeprüfte Massenprofile</span><span class="compare-after"><span class="icon-check">✓</span> Manuell verifizierte Fachkräfte</span></div>
+    <div class="compare-row"><span class="compare-before"><span class="icon-x">✕</span> Mindestlohn-Niveau</span><span class="compare-after"><span class="icon-check">✓</span> Minimum 25€/h</span></div>
+    <div class="compare-row"><span class="compare-before"><span class="icon-x">✕</span> Anonyme Jobbörse</span><span class="compare-after"><span class="icon-check">✓</span> Persönliches Profil mit Story</span></div>
+    <div class="compare-row" style="border:none"><span class="compare-before"><span class="icon-x">✕</span> Wochen bis zum Match</span><span class="compare-after"><span class="icon-check">✓</span> Profil sehen → direkt anfragen</span></div>
+  </div>
+  <div class="bottom-bar">DU ZAHLST NICHT FÜR ZEIT. DU ZAHLST FÜR ERGEBNIS.</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 8 — TARGET AUDIENCE -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s8">
+  <p class="label label--yw">Zielgruppe</p>
+  <div class="grid-2">
+    <div>
+      <h3 style="font-family:var(--font-h);font-size:0.85rem;letter-spacing:0.1em;margin-bottom:1rem">SUPPLY — FACHKRÄFTE</h3>
+      <div class="card card--light" style="margin-bottom:0.5rem"><strong style="font-family:var(--font-h)">🍳 Sous Chef / Chef de Partie</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Gastro-Profis mit 5+ Jahren Erfahrung</span></div>
+      <div class="card card--light" style="margin-bottom:0.5rem"><strong style="font-family:var(--font-h)">🏨 Head Waiter / Concierge</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Service-Kräfte auf Premium-Niveau</span></div>
+      <div class="card card--light" style="margin-bottom:0.5rem"><strong style="font-family:var(--font-h)">🔧 Elektriker / Sanitär</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Handwerk mit Meister oder Gesellen</span></div>
+      <div class="card card--light"><strong style="font-family:var(--font-h)">🧹 Facility / Hauswirtschaft</strong><br><span style="font-size:0.85rem;color:var(--gy-xd)">Professionelle Gebäudebetreuung</span></div>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-h);font-size:0.85rem;letter-spacing:0.1em;margin-bottom:1rem">DEMAND — UNTERNEHMEN</h3>
+      <div class="card card--black" style="color:var(--wh);margin-bottom:0.5rem"><span style="color:var(--yw);font-family:var(--font-h);font-weight:700">Gastronomie</span><br><span style="font-size:0.85rem;color:var(--gy-m)">Restaurants, Catering, Hotels</span></div>
+      <div class="card card--black" style="color:var(--wh);margin-bottom:0.5rem"><span style="color:var(--yw);font-family:var(--font-h);font-weight:700">Handwerk</span><br><span style="font-size:0.85rem;color:var(--gy-m)">Elektro, Sanitär, Heizung</span></div>
+      <div class="card card--black" style="color:var(--wh);margin-bottom:0.5rem"><span style="color:var(--yw);font-family:var(--font-h);font-weight:700">Facility Management</span><br><span style="font-size:0.85rem;color:var(--gy-m)">Reinigung, Gebäudetechnik</span></div>
+      <div class="card card--black" style="color:var(--wh)"><span style="color:var(--yw);font-family:var(--font-h);font-weight:700">Hotellerie</span><br><span style="font-size:0.85rem;color:var(--gy-m)">Service, Rezeption, Housekeeping</span></div>
+    </div>
+  </div>
+  <div class="card card--yellow" style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem">
+    <span style="font-size:1.4rem">📍</span>
+    <span><strong style="font-family:var(--font-h)">START:</strong> Frankfurt / Rhein-Main · 1,5M Einwohner · Hotspot für Gastro, Handwerk, Finance</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 9 — MARKET SIZE -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s9">
+  <p class="label label--yw">Marktgrösse</p>
+  <div style="max-width:52rem;margin-top:1.5rem">
+    <div style="padding:1.2rem 1.5rem;background:var(--gy-l);border:1px solid var(--gy-m);margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+      <span><strong style="font-family:var(--font-h);color:var(--gy-d)">TAM</strong> <span style="margin-left:0.5rem">7,5 Mio. Minijobber in Deutschland</span></span>
+      <span style="font-size:0.85rem;color:var(--gy-d)">~12 Mrd. € Lohnvolumen/Jahr</span>
+    </div>
+    <div style="padding:1.2rem 1.5rem;background:var(--gy-m);border:1px solid var(--bk);margin-bottom:0.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+      <span><strong style="font-family:var(--font-h)">SAM</strong> <span style="margin-left:0.5rem;font-weight:700">1,2 Mio. Fachkräfte in Gastro, Handwerk, Facility</span></span>
+      <span style="font-size:0.85rem;font-weight:700">~2 Mrd. € Lohnvolumen/Jahr</span>
+    </div>
+    <div style="padding:1.2rem 1.5rem;background:var(--yw);border:2px solid var(--bk);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem">
+      <span><strong style="font-family:var(--font-h)">SOM</strong> <span style="margin-left:0.5rem;font-weight:700">50.000 Fachkräfte — Rhein-Main, Phase 1</span></span>
+      <span style="font-size:0.85rem;font-weight:700">~80 Mio. € Lohnvolumen/Jahr</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 10 — COMPETITIVE LANDSCAPE -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s10">
+  <p class="label label--yw">Wettbewerb</p>
+  <h2 class="section-title">Niemand besetzt die Nische<br>„qualifizierte Minijob-Fachkräfte".</h2>
+  <div style="overflow-x:auto">
+  <table class="comp-table">
+    <thead><tr><th></th><th style="color:var(--gy-xd)">Zeitarbeit</th><th style="color:var(--gy-xd)">Jobbörsen</th><th class="col-header-mj">MaxiJobber</th></tr></thead>
+    <tbody>
+      <tr><td class="row-label">Aufschlag</td><td>40–60%</td><td>Variabel</td><td class="col-mj">0%</td></tr>
+      <tr><td class="row-label">Qualitätsfilter</td><td>Keiner</td><td>Keiner</td><td class="col-mj">25€/h Minimum</td></tr>
+      <tr><td class="row-label">Direktkontakt</td><td>Nein</td><td>Teilweise</td><td class="col-mj">Immer</td></tr>
+      <tr><td class="row-label">Kosten</td><td>Hoch</td><td>Mittel</td><td class="col-mj">Kostenlos</td></tr>
+      <tr><td class="row-label">Prüfung</td><td>Keine</td><td>Keine</td><td class="col-mj">Manuell</td></tr>
+      <tr><td class="row-label">Vertrag</td><td>Über Agentur</td><td>Unklar</td><td class="col-mj">Direkt</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 11 — MOAT -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--yellow" id="s11">
+  <p class="label label--bk">Unser Moat</p>
+  <h2 class="big-statement" style="font-size:clamp(1.6rem,3.5vw,2.2rem)">Minijob im Modell.<br>MaxiJobber in der Leistung.</h2>
+  <div class="grid-2" style="margin-top:2rem">
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">👑 25€/h Qualitätsfilter</div>
+      <div class="card-desc" style="color:var(--gy-m)">Einzigartig im Markt. Filtert automatisch. Zieht die Richtigen an.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">🤝 Direktkontakt als Prinzip</div>
+      <div class="card-desc" style="color:var(--gy-m)">Kein Ticket. Kein Chat-Tool. Echte Verbindung ab Minute 1.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">🏆 „Nicht jeder kommt rein"</div>
+      <div class="card-desc" style="color:var(--gy-m)">Exklusivität als Wachstumsmotor. FOMO treibt Qualität.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">⚡ AI Content Flywheel</div>
+      <div class="card-desc" style="color:var(--gy-m)">Jedes Profil = 1 Social Post. Organisch. Ohne Adspend.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 12 — BUSINESS MODEL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s12">
+  <p class="label label--yw">Geschäftsmodell</p>
+  <h2 class="section-title" style="color:var(--wh)">Erst Netzwerkeffekt. Dann Monetarisierung.</h2>
+  <div class="grid-3">
+    <div class="card card--yellow" style="min-height:16rem">
+      <p class="label label--bk" style="font-size:0.7rem">JETZT</p>
+      <div class="card-title" style="color:var(--bk);margin-bottom:1rem">Netzwerk aufbauen</div>
+      <div style="font-size:0.85rem;color:var(--bk);line-height:2">Kostenlos für beide Seiten<br>AI-Content-Motor<br>20 Profile → Matches<br>Frankfurt als Proof</div>
+    </div>
+    <div class="card card--dark" style="min-height:16rem">
+      <p class="label label--yw" style="font-size:0.7rem">PHASE 2</p>
+      <div class="card-title card-title--yw" style="margin-bottom:1rem">Monetarisierung</div>
+      <div style="font-size:0.85rem;color:var(--gy-m);line-height:2">Premium-Sichtbarkeit 19€/Mo<br>Verified Badge für Firmen<br>Featured Listings<br>Pro Analytics</div>
+    </div>
+    <div class="card card--dark" style="min-height:16rem">
+      <p class="label" style="font-size:0.7rem;color:var(--gy-d)">PHASE 3</p>
+      <div class="card-title" style="color:var(--wh);margin-bottom:1rem">Skalierung</div>
+      <div style="font-size:0.85rem;color:var(--gy-m);line-height:2">Enterprise-Abos<br>AI Matching Engine<br>DACH-Expansion<br>Exit-Ready Metriken</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 13 — GO TO MARKET -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s13">
+  <p class="label label--yw">Go-To-Market</p>
+  <h2 class="section-title" style="color:var(--wh)">Jedes Profil ist ein Marketing-Asset.</h2>
+  <div class="flywheel">
+    <div class="fly-box"><div class="fly-label">PROFIL</div><div class="fly-desc">Fachkraft bewirbt sich</div></div>
+    <span class="fly-arrow">→</span>
+    <div class="fly-box"><div class="fly-label">PRÜFUNG</div><div class="fly-desc">Admin verifiziert</div></div>
+    <span class="fly-arrow">→</span>
+    <div class="fly-box fly-box--yw"><div class="fly-label">AI POST</div><div class="fly-desc">Content automatisch</div></div>
+    <span class="fly-arrow">→</span>
+    <div class="fly-box"><div class="fly-label">SOCIAL</div><div class="fly-desc">Multi-Channel</div></div>
+    <span class="fly-arrow">→</span>
+    <div class="fly-box"><div class="fly-label">MATCH</div><div class="fly-desc">Firma kontaktiert</div></div>
+  </div>
+  <div class="channels">
+    <div class="channel"><span class="channel-name">LinkedIn</span><span class="channel-target">Unternehmen</span></div>
+    <div class="channel"><span class="channel-name">Instagram</span><span class="channel-target">Fachkräfte</span></div>
+    <div class="channel"><span class="channel-name">Facebook Groups</span><span class="channel-target">Frankfurt</span></div>
+    <div class="channel"><span class="channel-name">WhatsApp</span><span class="channel-target">Empfehlungen</span></div>
+  </div>
+  <div style="margin-top:1.5rem;padding:0.8rem 1rem;background:var(--bk-l);font-size:0.85rem;color:var(--yw)">
+    ↻ Flywheel: Profil → Post → Sichtbarkeit → Anfrage → Erfolg → mehr Profile
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 14 — TRACTION -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s14">
+  <p class="label label--yw">Traction & Status</p>
+  <h2 class="section-title">82% launch-ready. Produkt gebaut.</h2>
+  <div class="progress-bar"><div class="progress-fill"><span class="progress-label">82%</span></div></div>
+  <div class="grid-2">
+    <div class="card card--light" style="padding:1.5rem">
+      <p class="label label--bk" style="font-size:0.65rem">GEBAUT & LIVE</p>
+      <div class="built-item"><span class="built-check">✓</span> Landing Page (konvertierende Copy)</div>
+      <div class="built-item"><span class="built-check">✓</span> Profil-Browse ohne Login</div>
+      <div class="built-item"><span class="built-check">✓</span> 4-Schritt Bewerbungs-Wizard</div>
+      <div class="built-item"><span class="built-check">✓</span> Admin Panel (Magic Link Auth)</div>
+      <div class="built-item"><span class="built-check">✓</span> Supabase DB + Auth + Storage</div>
+      <div class="built-item"><span class="built-check">✓</span> Filter: Beruf, Stadt, Verfügbarkeit</div>
+      <div class="built-item"><span class="built-check">✓</span> Foto-Upload (Drag & Drop)</div>
+      <div class="built-item"><span class="built-check">✓</span> Kontaktschutz implementiert</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh);padding:1.5rem">
+      <p class="label label--yw" style="font-size:0.65rem">NÄCHSTE SCHRITTE</p>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">AI Post-Generator im Admin</span></div>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">20 echte Profile (Frankfurt)</span></div>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">Social Media Rollout</span></div>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">Erste Unternehmens-Anfragen</span></div>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">Legal / Mustervertrag live</span></div>
+      <div class="built-item"><span class="next-arrow">→</span> <span style="color:var(--gy-m)">Erste Erfolgs-Stories</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 15 — UNIT ECONOMICS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s15">
+  <p class="label label--yw">Unit Economics</p>
+  <h2 class="section-title" style="color:var(--wh)">Extrem kapitaleffizient. ~50€/Monat Burn Rate.</h2>
+  <div style="max-width:52rem;margin-top:1.5rem">
+    <div class="cost-row"><div class="cost-icon">⚙</div><div class="cost-item">OpenAI (gpt-4o-mini)</div><div class="cost-val">~50€</div><div class="cost-note">Bio + Post Generator</div></div>
+    <div class="cost-row"><div class="cost-icon">🛡</div><div class="cost-item">Supabase</div><div class="cost-val">0€</div><div class="cost-note">Free Tier für Launch</div></div>
+    <div class="cost-row"><div class="cost-icon">🚀</div><div class="cost-item">Vercel Hosting</div><div class="cost-val">0€</div><div class="cost-note">Free Tier reicht</div></div>
+    <div class="cost-row"><div class="cost-icon">👤</div><div class="cost-item">Personal</div><div class="cost-val">0€</div><div class="cost-note">Solo Founder + AI Dev</div></div>
+  </div>
+  <div style="background:var(--yw);color:var(--bk);padding:0.8rem 1.2rem;margin-top:1rem;max-width:52rem">
+    <strong style="font-family:var(--font-h)">TOTAL: ~50€/MONAT</strong> · Runway: praktisch unbegrenzt
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 16 — REVENUE POTENTIAL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--light" id="s16">
+  <p class="label label--yw">Revenue-Potenzial</p>
+  <h2 class="section-title">Konservative Projektion bei Premium-Modell nach PMF.</h2>
+  <div style="max-width:52rem;margin-top:1.5rem">
+    <div class="scenario scenario--a">
+      <div class="scenario-label" style="color:var(--gy-xd)">SZENARIO A — KONSERVATIV</div>
+      <div class="scenario-metrics">
+        <div class="scenario-metric"><div class="val">1.000</div><div class="lbl">Profile</div></div>
+        <div class="scenario-metric"><div class="val">10%</div><div class="lbl">Premium</div></div>
+        <div class="scenario-metric"><div class="val">19€/Mo</div><div class="lbl">Preis</div></div>
+        <div class="scenario-metric"><div class="val">22.800€</div><div class="lbl">ARR</div></div>
+      </div>
+    </div>
+    <div class="scenario scenario--b">
+      <div class="scenario-label">SZENARIO B — REALISTISCH</div>
+      <div class="scenario-metrics">
+        <div class="scenario-metric"><div class="val">5.000</div><div class="lbl">Profile</div></div>
+        <div class="scenario-metric"><div class="val">15%</div><div class="lbl">Premium</div></div>
+        <div class="scenario-metric"><div class="val">19€/Mo</div><div class="lbl">Preis</div></div>
+        <div class="scenario-metric"><div class="val">171.000€</div><div class="lbl">ARR</div></div>
+      </div>
+    </div>
+    <div class="scenario scenario--c">
+      <div class="scenario-label">SZENARIO C — AMBITIONIERT</div>
+      <div class="scenario-metrics">
+        <div class="scenario-metric"><div class="val">50.000</div><div class="lbl">Profile</div></div>
+        <div class="scenario-metric"><div class="val">20%</div><div class="lbl">Premium</div></div>
+        <div class="scenario-metric"><div class="val">29€/Mo</div><div class="lbl">Preis</div></div>
+        <div class="scenario-metric"><div class="val" style="color:var(--bk)">3,48M€</div><div class="lbl">ARR</div></div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;color:var(--gy-xd);margin-top:0.75rem">Zusätzliche Revenue-Streams: Enterprise-Abos, Featured Listings, AI Matching Premium</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 17 — ROADMAP -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s17">
+  <p class="label label--yw">Roadmap</p>
+  <div class="roadmap">
+    <div class="rm-card">
+      <div class="rm-dot rm-dot--active"></div>
+      <div class="rm-when" style="color:var(--yw)">Q2 2026</div>
+      <div class="rm-body rm-body--active">
+        <div class="rm-title" style="color:var(--yw)">LAUNCH</div>
+        <div class="rm-items">20 Profile<br>10 Unternehmen<br>Erste Matches<br>Social Content Start</div>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-dot"></div>
+      <div class="rm-when" style="color:var(--wh)">Q3–Q4 2026</div>
+      <div class="rm-body">
+        <div class="rm-title" style="color:var(--wh)">PMF</div>
+        <div class="rm-items">100+ Profile<br>50 Unternehmen<br>Erfolgs-Stories<br>HWK/IHK Partner</div>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-dot"></div>
+      <div class="rm-when" style="color:var(--wh)">2027</div>
+      <div class="rm-body">
+        <div class="rm-title" style="color:var(--wh)">SCALE</div>
+        <div class="rm-items">5 Städte<br>Premium-Features<br>AI Matching<br>1.000+ Profile</div>
+      </div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-dot"></div>
+      <div class="rm-when" style="color:var(--gy-d)">2028+</div>
+      <div class="rm-body">
+        <div class="rm-title" style="color:var(--gy-d)">EXIT-READY</div>
+        <div class="rm-items">DACH-Expansion<br>Enterprise-Tier<br>Strategic Acquirer<br>oder Profitabel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 18 — EXIT PATHWAYS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s18">
+  <p class="label label--yw">Exit-Szenarien</p>
+  <h2 class="section-title" style="color:var(--wh)">Gebaut mit Exit-Orientierung.</h2>
+  <div style="max-width:52rem;margin-top:1.5rem">
+    <div class="exit-row exit-row--highlight"><span class="exit-buyer">StepStone / Indeed</span><span class="exit-why">Minijob-Vertikale fehlt komplett im Portfolio</span><span class="exit-type">Acqui-hire + Produkt</span></div>
+    <div class="exit-row exit-row--dark"><span class="exit-buyer">Randstad / Adecco</span><span class="exit-why">Direktvermittlung als Bedrohung — kaufen statt kämpfen</span><span class="exit-type">Strategische Akquisition</span></div>
+    <div class="exit-row exit-row--dark"><span class="exit-buyer">Personio / SAP SF</span><span class="exit-why">Fachkräfte-Pool als Add-On für HR-Suite</span><span class="exit-type">Feature Acquisition</span></div>
+    <div class="exit-row exit-row--dark"><span class="exit-buyer">Profitabel bleiben</span><span class="exit-why">Cash-Flow Business bei 50€/Mo Kosten + Premium-Revenue</span><span class="exit-type">Kein Exit nötig</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 19 — TEAM -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--yellow" id="s19">
+  <p class="label label--bk">Das Team</p>
+  <div class="card card--black" style="color:var(--wh);padding:2rem;margin-bottom:1.5rem">
+    <h2 style="font-family:var(--font-h);font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:0.3rem;color:var(--wh)">RITLOOP</h2>
+    <p class="label label--yw" style="font-size:0.65rem">GRÜNDER & SOLO OPERATOR</p>
+    <p style="color:var(--gy-m);font-size:0.95rem;line-height:1.7;margin-top:1rem;max-width:40rem">
+      Serial Entrepreneur mit HR-Tech Fokus. Baut Produkte mit AI-Assisted Development ("Vibe Coding"). Lean Operations — ein Gründer, null Overhead. Denkt in Build-to-Sell. Burn Rate: ~50€/Monat.
+    </p>
+  </div>
+  <div class="grid-2">
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">AI ALS CO-BUILDER</div>
+      <div class="card-desc" style="color:var(--gy-m);line-height:1.8">Claude Code → Vollständige Entwicklung<br>OpenAI gpt-4o-mini → In-Product Features<br>Keine Entwickler-Gehälter<br>Kein Office. Kein Overhead.</div>
+    </div>
+    <div class="card card--black" style="color:var(--wh)">
+      <div class="card-title card-title--yw">TECH STACK</div>
+      <div class="card-desc" style="color:var(--gy-m);line-height:1.8">Next.js 14 + TypeScript<br>Supabase (Auth + DB + Storage)<br>Vercel + GitHub<br>Tailwind CSS + Embla Carousel</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 20 — TOUGH QUESTIONS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s20">
+  <p class="label label--yw">Harte Fragen — Ehrliche Antworten</p>
+  <div style="max-width:48rem;margin-top:1.5rem">
+    <div class="qa-item">
+      <div class="qa-q">"Wie verdient ihr Geld?"</div>
+      <div class="qa-a">Aktuell gar nicht — das ist Absicht. Phase 1 baut Netzwerkeffekt. Premium-Features kommen nach Product-Market Fit.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">"Wie skaliert ein manueller Prüfprozess?"</div>
+      <div class="qa-a">Frankfurt first. Bis 500 Profile ist manuell machbar. Danach: AI-unterstützte Vorprüfung + manuelle Freigabe.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">"Cold Start Problem?"</div>
+      <div class="qa-a">AI Post-Generator löst das. Jedes Profil wird automatisch zum Social Media Content. Sichtbarkeit ohne Adspend.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q">"Solo Founder — Risiko?"</div>
+      <div class="qa-a">Feature, kein Bug. 50€/Mo Burn Rate = praktisch unbegrenzter Runway. AI ersetzt 3-4 Entwickler.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 21 — THE ASK -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s21">
+  <p class="label label--yw">Was Wir Suchen</p>
+  <h2 class="big-statement" style="color:var(--wh)">Strategischer Partner für die<br>erste Wachstumsphase.</h2>
+  <div style="max-width:52rem;margin-top:2rem">
+    <div class="ask-row ask-row--highlight"><span class="ask-label">KAPITAL</span><span class="ask-desc">Pre-Seed / Seed für Content-Marketing, erste Hires und Expansion über Frankfurt hinaus.</span></div>
+    <div class="ask-row ask-row--dark"><span class="ask-label">NETZWERK</span><span class="ask-desc">Zugang zu Gastro, Handwerk, Facility-Management Entscheidern in der Rhein-Main Region.</span></div>
+    <div class="ask-row ask-row--dark"><span class="ask-label">STRATEGIE</span><span class="ask-desc">Sparringspartner für Monetarisierung, Skalierung und Exit-Timing.</span></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- SLIDE 22 — CLOSING -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="slide slide--dark" id="s22" style="padding-bottom:4.5rem">
+  <h1 class="hero-title" style="margin-bottom:0">MAXI</h1>
+  <h1 class="hero-sub" style="margin-top:-0.3em">JOBBER.</h1>
+  <p style="font-size:clamp(1rem,1.8vw,1.3rem);color:var(--gy-d);font-style:italic;margin-top:2rem;max-width:36rem;line-height:1.6">
+    Viele Aufgaben brauchen keine Aushilfe.<br>Sondern MaxiJobber.
+  </p>
+  <p style="font-size:0.9rem;color:var(--gy-xd);margin-top:1.5rem">maxijobber.de</p>
+  <div class="bottom-bar">BEIDE SEITEN GEWINNEN. DAS IST DAS SYSTEM.</div>
+</section>
+
+<script>
+// Build nav dots
+const slides = document.querySelectorAll('.slide');
+const nav = document.getElementById('nav');
+slides.forEach((s, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot';
+  dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+  nav.appendChild(dot);
+});
+
+// Active dot on scroll
+const dots = document.querySelectorAll('.nav-dot');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = [...slides].indexOf(e.target);
+      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.4 });
+slides.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

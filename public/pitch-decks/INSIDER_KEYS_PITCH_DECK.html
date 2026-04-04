@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insider Keys — Hotel Pitch</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --black:#1C1917;
+  --stone:#44403C;
+  --mid:#78716C;
+  --border:#E7E5E4;
+  --amber:#B45309;
+  --amber-l:#FEF3C7;
+  --amber-b:#F59E0B;
+  --teal:#0F766E;
+  --teal-l:#D1FAE5;
+  --bg:#FAFAF9;
+  --white:#FFFFFF;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#fff;
+  color:var(--stone);
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* ── PAGE SYSTEM ── */
+.page{
+  width:210mm;
+  min-height:297mm;
+  margin:0 auto;
+  position:relative;
+  overflow:hidden;
+  page-break-after:always;
+  break-after:page;
+}
+
+@media print{
+  .page{margin:0;width:100%;min-height:100vh}
+  .screen-hint{display:none}
+}
+
+@media screen{
+  body{background:#e5e5e5;padding:24px 0}
+  .page{box-shadow:0 4px 40px rgba(0,0,0,.18);margin:0 auto 32px;border-radius:2px}
+}
+
+/* ── TYPOGRAPHY ── */
+.serif{font-family:'DM Serif Display',serif}
+.label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--amber)}
+h1{font-family:'DM Serif Display',serif;font-size:52px;line-height:1.08;color:var(--black);font-weight:400}
+h2{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.15;color:var(--black);font-weight:400}
+h3{font-size:15px;font-weight:600;color:var(--black);letter-spacing:.01em}
+p{font-size:13px;line-height:1.75;color:var(--stone)}
+.big-p{font-size:16px;line-height:1.7;color:var(--stone)}
+.muted{color:var(--mid);font-size:12px}
+
+/* ── COVER ── */
+.cover{
+  background:var(--black);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:60px 50px;
+  position:relative;
+}
+.cover::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(180,83,9,.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(180,83,9,.08) 0%, transparent 45%);
+}
+.cover-grid{
+  position:absolute;inset:0;opacity:.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+  background-size:40px 40px;
+}
+.cover-key{
+  font-size:48px;color:var(--amber-b);margin-bottom:32px;
+  position:relative;z-index:2;
+  animation:none;
+}
+.cover h1{
+  color:#fff;font-size:72px;letter-spacing:.04em;
+  position:relative;z-index:2;margin-bottom:16px;
+}
+.cover-tagline{
+  font-size:20px;color:#FDE68A;font-style:italic;
+  font-family:'DM Serif Display',serif;
+  position:relative;z-index:2;margin-bottom:60px;
+}
+.cover-line{width:60px;height:1px;background:rgba(255,255,255,.2);margin:0 auto 60px;position:relative;z-index:2}
+.cover-sub{font-size:16px;color:#A8A29E;position:relative;z-index:2;font-weight:300}
+
+/* ── SECTION LAYOUTS ── */
+.pad{padding:52px 56px}
+.pad-sm{padding:40px 56px}
+.dark-section{background:var(--black);color:#fff}
+.dark-section h2{color:#fff}
+.dark-section p{color:#D6D3D1}
+.dark-section .label{color:#FDE68A}
+.amber-stripe{background:var(--amber-l);border-left:6px solid var(--amber-b);padding:28px 36px;margin:32px 0}
+.amber-stripe p{color:var(--amber);font-weight:500;font-size:15px;line-height:1.6}
+
+/* ── COMPASS VISUAL ── */
+.compass-wrap{display:flex;align-items:center;justify-content:center;padding:20px 0}
+.compass{
+  width:180px;height:180px;border-radius:50%;
+  border:2px solid var(--border);
+  position:relative;flex-shrink:0;
+  background:var(--bg);
+}
+.compass::before{
+  content:'N';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  font-size:11px;font-weight:700;color:var(--mid);letter-spacing:.1em;
+}
+.compass::after{
+  content:'S';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  font-size:11px;font-weight:700;color:var(--mid);letter-spacing:.1em;
+}
+.compass-e{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:700;color:var(--mid)}
+.compass-w{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:700;color:var(--mid)}
+.compass-ring{
+  position:absolute;inset:16px;border-radius:50%;
+  border:1px dashed var(--border);
+}
+.compass-arrow{
+  position:absolute;top:50%;left:50%;
+  width:4px;height:64px;
+  transform:translate(-50%,-75%) rotate(35deg);
+  transform-origin:bottom center;
+}
+.arrow-north{
+  width:0;height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-bottom:44px solid var(--amber-b);
+  margin-left:-6px;
+}
+.arrow-south{
+  width:0;height:0;
+  border-left:8px solid transparent;
+  border-right:8px solid transparent;
+  border-top:24px solid var(--border);
+  margin-left:-6px;
+}
+.compass-dot{
+  position:absolute;top:50%;left:50%;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--black);transform:translate(-50%,-50%);
+  z-index:2;
+}
+.compass-dist{
+  text-align:center;margin-top:12px;
+  font-size:28px;font-weight:600;color:var(--black);letter-spacing:-.01em;
+}
+.compass-dist span{font-size:13px;color:var(--mid);font-weight:400;margin-left:4px}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:32px 0}
+.stat-box{background:var(--bg);padding:32px 20px;text-align:center;border:1px solid var(--border)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:52px;color:var(--amber);line-height:1;margin-bottom:8px}
+.stat-label{font-size:12px;font-weight:600;color:var(--black);margin-bottom:4px}
+.stat-sub{font-size:11px;color:var(--mid);line-height:1.5}
+
+.stats-dark .stat-box{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.stats-dark .stat-num{color:#FDE68A}
+.stats-dark .stat-label{color:#fff}
+.stats-dark .stat-sub{color:#A8A29E}
+
+/* ── STEPS ── */
+.steps{margin:28px 0}
+.step{display:grid;grid-template-columns:44px 1fr;gap:20px;margin-bottom:4px}
+.step-num{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--black);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:600;flex-shrink:0;
+}
+.step-content{border-bottom:1px solid var(--border);padding-bottom:20px;padding-top:6px;margin-bottom:16px}
+.step-content h3{margin-bottom:4px}
+.step:last-child .step-content{border-bottom:none}
+
+/* ── TWO COL GRID ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0}
+.feature-card{
+  padding:24px;border:1px solid var(--border);border-radius:2px;
+  position:relative;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--amber-b);
+}
+.feature-icon{font-size:24px;margin-bottom:12px}
+.feature-card h3{margin-bottom:8px;font-size:13px}
+.feature-card p{font-size:12px;line-height:1.6}
+
+/* ── MAP VISUAL ── */
+.map-visual{
+  background:var(--black);
+  border-radius:4px;
+  position:relative;
+  overflow:hidden;
+  margin:24px 0;
+  height:200px;
+}
+.map-bg{
+  position:absolute;inset:0;opacity:.15;
+  background-image:
+    linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
+  background-size:30px 30px;
+}
+.map-fog{
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 35% 55%, transparent 22%, rgba(28,25,23,.85) 40%),
+             radial-gradient(circle at 70% 30%, transparent 15%, rgba(28,25,23,.85) 32%);
+}
+.map-pin{
+  position:absolute;width:12px;height:12px;border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.map-pin.found{background:#1D9E75;box-shadow:0 0 0 4px rgba(29,158,117,.25)}
+.map-pin.active{background:#F59E0B;box-shadow:0 0 0 4px rgba(245,158,11,.3)}
+.map-pin.locked{background:#57534E;opacity:.5}
+.map-path{position:absolute;border-top:1px dashed rgba(245,158,11,.4)}
+.map-label{position:absolute;font-size:10px;color:rgba(255,255,255,.6);font-family:'DM Sans',sans-serif;font-weight:600;white-space:nowrap}
+
+/* ── VIBRATION VISUAL ── */
+.vibe-wrap{display:flex;align-items:center;gap:20px;padding:24px;background:var(--bg);border:1px solid var(--border);margin:16px 0;border-radius:2px}
+.vibe-phone{
+  width:48px;height:80px;border-radius:10px;
+  border:2.5px solid var(--black);
+  background:var(--black);position:relative;
+  flex-shrink:0;
+}
+.vibe-screen{
+  position:absolute;inset:5px 4px;border-radius:7px;
+  background:linear-gradient(135deg,#1D9E75 0%,#0F766E 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.vibe-rings{display:flex;flex-direction:column;gap:6px;flex:1}
+.vibe-ring{
+  height:4px;border-radius:2px;
+  background:linear-gradient(90deg,var(--amber-b) 0%,rgba(245,158,11,.1) 100%);
+}
+
+/* ── PRICE CARDS ── */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:28px 0;border:1px solid var(--border)}
+.price-card{padding:32px 24px;border-right:1px solid var(--border);text-align:center}
+.price-card:last-child{border-right:none}
+.price-card.featured{background:var(--black);border-color:var(--black)}
+.price-name{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--mid);margin-bottom:20px}
+.price-card.featured .price-name{color:#FDE68A}
+.price-num{font-family:'DM Serif Display',serif;font-size:48px;color:var(--black);line-height:1;margin-bottom:4px}
+.price-card.featured .price-num{color:#fff}
+.price-period{font-size:12px;color:var(--mid);margin-bottom:24px}
+.price-card.featured .price-period{color:#A8A29E}
+.price-features{list-style:none;text-align:left}
+.price-features li{font-size:12px;color:var(--stone);padding:6px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.price-card.featured .price-features li{color:#D6D3D1;border-color:rgba(255,255,255,.08)}
+.price-features li::before{content:'–';color:var(--amber-b);font-weight:700;flex-shrink:0}
+.price-card.featured .price-features li::before{color:#FDE68A}
+
+/* ── CLOSING ── */
+.closing{
+  background:var(--black);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:80px 60px;
+  min-height:297mm;
+  position:relative;
+}
+.closing::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 40%, rgba(180,83,9,.15) 0%, transparent 60%);
+}
+.closing-key{font-size:56px;margin-bottom:32px;position:relative;z-index:2}
+.closing h2{color:#fff;font-size:52px;position:relative;z-index:2;margin-bottom:16px}
+.closing-sub{font-size:18px;color:#FDE68A;font-style:italic;font-family:'DM Serif Display',serif;position:relative;z-index:2;margin-bottom:48px}
+.closing-rule{width:60px;height:1px;background:rgba(255,255,255,.15);margin:0 auto 48px;position:relative;z-index:2}
+.closing-contact{font-size:15px;color:#A8A29E;position:relative;z-index:2;line-height:2}
+.closing-contact a{color:#FDE68A;text-decoration:none}
+
+/* ── SPLIT LAYOUT ── */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:297mm}
+.split-left{padding:56px 48px 56px 56px;display:flex;flex-direction:column;justify-content:center}
+.split-right{background:var(--black);padding:56px 56px 56px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.split-right::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 30%, rgba(180,83,9,.15) 0%, transparent 55%);
+}
+.split-right *{position:relative;z-index:2}
+.split-right h2{color:#fff}
+.split-right .label{color:#FDE68A}
+.split-right p{color:#D6D3D1}
+
+/* ── STAFF CARD ── */
+.staff-card{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:4px;padding:20px;margin-bottom:16px;
+}
+.staff-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.avatar{
+  width:48px;height:48px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:700;color:#fff;
+}
+.avatar.a1{background:linear-gradient(135deg,#B45309,#92400E)}
+.avatar.a2{background:linear-gradient(135deg,#0F766E,#064E3B)}
+.avatar.a3{background:linear-gradient(135deg,#1D4ED8,#1E3A8A)}
+.staff-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:2px}
+.staff-role{font-size:11px;color:#A8A29E}
+.voice-bar{display:flex;align-items:center;gap:8px}
+.play-btn{
+  width:28px;height:28px;border-radius:50%;border:1px solid rgba(245,158,11,.4);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.play-tri{
+  width:0;height:0;
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+  border-left:8px solid #FDE68A;margin-left:2px;
+}
+.wave{display:flex;align-items:center;gap:2px;height:18px}
+.wave-bar{width:3px;border-radius:2px;background:rgba(245,158,11,.5)}
+.staff-quote{font-size:12px;color:#A8A29E;font-style:italic;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06);line-height:1.6}
+.found-count{font-size:11px;color:#6EE7B7;margin-top:6px}
+
+/* ── SCREEN HINT ── */
+.screen-hint{
+  text-align:center;padding:12px;font-size:12px;color:#999;
+  font-family:'DM Sans',sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div class="screen-hint">Insider Keys — Hotel Pitch Deck &nbsp;·&nbsp; Print or save as PDF for sharing</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 1: COVER                         -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="cover" style="min-height:297mm">
+    <div class="cover-grid"></div>
+    <div class="cover-key">✦</div>
+    <h1 class="cover-title" style="color:#fff;font-family:'DM Serif Display',serif;font-size:76px;letter-spacing:.04em;margin-bottom:16px">INSIDER KEYS</h1>
+    <div class="cover-tagline">Secret spots, curated by your host.</div>
+    <div class="cover-line"></div>
+
+    <!-- Mini compass on cover -->
+    <div style="margin-bottom:48px;position:relative;z-index:2">
+      <div style="width:140px;height:140px;border-radius:50%;border:1px solid rgba(255,255,255,.15);position:relative;margin:0 auto">
+        <div style="position:absolute;inset:12px;border-radius:50%;border:1px dashed rgba(255,255,255,.08)"></div>
+        <div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em">N</div>
+        <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.1em">S</div>
+        <div style="position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:9px;color:rgba(255,255,255,.3)">E</div>
+        <div style="position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:9px;color:rgba(255,255,255,.3)">W</div>
+        <!-- Arrow pointing to discovery -->
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-70%) rotate(42deg);transform-origin:bottom center">
+          <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:36px solid #F59E0B;margin-left:-3px"></div>
+          <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:20px solid rgba(255,255,255,.2);margin-left:-3px"></div>
+        </div>
+        <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);z-index:2"></div>
+      </div>
+      <div style="text-align:center;margin-top:10px;font-size:22px;font-weight:600;color:#fff;letter-spacing:-.01em">340<span style="font-size:12px;color:#A8A29E;font-weight:400;margin-left:4px">meters</span></div>
+    </div>
+
+    <div class="cover-sub" style="font-size:15px;color:#A8A29E;letter-spacing:.02em">A New Guest Experience for Forward-Thinking Hotels</div>
+    <div style="margin-top:20px;font-size:11px;color:#57534E;letter-spacing:.12em;position:relative;z-index:2;text-transform:uppercase">Confidential Proposal</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 2: THE PROBLEM                   -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div style="min-height:297mm;display:flex;flex-direction:column">
+    <div class="pad" style="flex:1">
+      <div class="label">The Opportunity</div>
+      <h1 style="margin:12px 0 20px;font-size:44px">Your staff know this city<br>better than any travel guide.</h1>
+      <p class="big-p" style="margin-bottom:12px">The café that opens at 6am and still has the best croissants in the city. The viewpoint only locals visit. The market nobody talks about. The bar that only looks empty from the outside.</p>
+      <p class="big-p" style="color:var(--mid)">Right now, that knowledge lives inside your team's heads. It reaches one guest per day — in a lobby conversation. Then it disappears.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row" style="margin:0;gap:1px">
+      <div class="stat-box" style="border:none;border-top:1px solid var(--border)">
+        <div class="stat-num">72%</div>
+        <div class="stat-label">of hotel guests</div>
+        <div class="stat-sub">want local recommendations from hotel staff during their stay</div>
+      </div>
+      <div class="stat-box" style="border:none;border-top:1px solid var(--border);border-left:1px solid var(--border);border-right:1px solid var(--border)">
+        <div class="stat-num">12%</div>
+        <div class="stat-label">actually receive one</div>
+        <div class="stat-sub">A personal recommendation from hotel staff is rare — and guests know it</div>
+      </div>
+      <div class="stat-box" style="border:none;border-top:1px solid var(--border)">
+        <div class="stat-num">4.2×</div>
+        <div class="stat-label">more likely to return</div>
+        <div class="stat-sub">when the hotel creates a genuinely memorable experience beyond the room</div>
+      </div>
+    </div>
+
+    <div class="amber-stripe" style="margin:0;border-radius:0;border-left:none;border-top:none;border-right:none;border-bottom:none;border-top:4px solid var(--amber-b)">
+      <p style="font-size:16px;font-style:italic;color:var(--black);font-family:'DM Serif Display',serif;font-weight:400">"The experience is the memory. The memory is the reason to return."</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 3: WHAT IT IS (SPLIT)            -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="split">
+    <div class="split-left">
+      <div class="label">The Solution</div>
+      <h2 style="margin:12px 0 20px;font-size:34px">A treasure hunt built on your team's real knowledge.</h2>
+      <p style="margin-bottom:16px">Guests receive a unique QR code at check-in. Insider Keys opens in their browser — no app download. They see a city map with hidden spots, chosen personally by your team.</p>
+      <p style="margin-bottom:24px">As they walk toward a spot, their phone becomes a compass. The distance counts down live. When they arrive, the phone vibrates and the staff member's voice plays automatically.</p>
+
+      <!-- Map visual -->
+      <div class="map-visual">
+        <div class="map-bg"></div>
+        <div class="map-fog"></div>
+        <!-- Pins -->
+        <div class="map-pin found" style="left:33%;top:52%"></div>
+        <div class="map-pin active" style="left:58%;top:35%"></div>
+        <div class="map-pin locked" style="left:78%;top:65%"></div>
+        <div class="map-pin locked" style="left:20%;top:25%"></div>
+        <!-- Labels -->
+        <div class="map-label" style="left:36%;top:44%;color:rgba(29,158,117,.9)">Maria's Café ✓</div>
+        <div class="map-label" style="left:61%;top:27%;color:#FDE68A">The Rooftop →</div>
+        <div style="position:absolute;bottom:12px;left:12px;font-size:10px;color:rgba(255,255,255,.4)">Explore to reveal</div>
+        <!-- Distance indicator -->
+        <div style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.6);border-radius:4px;padding:4px 10px;font-size:13px;color:#FDE68A;font-weight:600">147m →</div>
+      </div>
+    </div>
+
+    <div class="split-right">
+      <div class="label" style="color:#FDE68A;margin-bottom:20px">How it works</div>
+
+      <div style="margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">1</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">Guest checks in</div>
+            <div style="font-size:12px;color:#A8A29E">QR code on key card or check-in email</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">City map opens</div>
+            <div style="font-size:12px;color:#A8A29E">Fog of war — spots reveal as they explore</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">Compass navigation</div>
+            <div style="font-size:12px;color:#A8A29E">Live arrow + distance: "147m →"</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.4);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#FDE68A;flex-shrink:0">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">Arrival moment ✦</div>
+            <div style="font-size:12px;color:#6EE7B7">Phone vibrates · Staff voice plays · Story unfolds</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">5</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">Photo + complete</div>
+            <div style="font-size:12px;color:#A8A29E">XP earned · Map expands · Next spot reveals</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0">6</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#fff">Explorer Passport stamped</div>
+            <div style="font-size:12px;color:#A8A29E">Your hotel stays with them — forever</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 4: THE TECHNOLOGY (PHONE VIEW)  -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="pad" style="min-height:297mm">
+    <div class="label">The Technology</div>
+    <h2 style="margin:12px 0 8px">Every capability of the<br>modern smartphone. No app.</h2>
+    <p class="muted" style="margin-bottom:32px">Everything runs in the mobile browser. No download. No friction. Just scan and explore.</p>
+
+    <div class="two-col">
+      <!-- Compass feature -->
+      <div class="feature-card">
+        <div class="feature-icon">🧭</div>
+        <h3>Live Compass Navigation</h3>
+        <p style="margin-bottom:16px">DeviceOrientation API turns the phone into a real compass. The arrow rotates in real time pointing toward the next hidden spot. Distance counts down live.</p>
+        <!-- Mini compass -->
+        <div style="display:flex;align-items:center;gap:16px;background:var(--bg);padding:16px;border-radius:2px">
+          <div style="width:70px;height:70px;border-radius:50%;border:1.5px solid var(--border);position:relative;flex-shrink:0">
+            <div style="position:absolute;inset:8px;border-radius:50%;border:1px dashed var(--border)"></div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-68%) rotate(38deg);transform-origin:bottom center">
+              <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:22px solid #F59E0B;margin-left:-2px"></div>
+              <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:12px solid var(--border);margin-left:-2px"></div>
+            </div>
+            <div style="position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;background:var(--black);transform:translate(-50%,-50%);z-index:2"></div>
+          </div>
+          <div>
+            <div style="font-size:28px;font-weight:700;color:var(--black)">85<span style="font-size:12px;color:var(--mid);font-weight:400">m</span></div>
+            <div style="font-size:11px;color:var(--teal);font-weight:600">Getting close…</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vibration feature -->
+      <div class="feature-card">
+        <div class="feature-icon">📳</div>
+        <h3>Proximity Haptics</h3>
+        <p style="margin-bottom:16px">The Vibration API pulses the phone as guests approach. At 80m: one pulse. At 20m: three pulses — arrival signal. No need to look at the screen.</p>
+        <div style="background:var(--bg);padding:16px;border-radius:2px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--amber-b)"></div>
+            <div style="font-size:12px;font-weight:600;color:var(--black)">80m — proximity pulse</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;margin-left:18px;margin-bottom:12px">
+            <div style="width:32px;height:6px;border-radius:3px;background:var(--amber-b);opacity:.8"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--teal)"></div>
+            <div style="font-size:12px;font-weight:600;color:var(--black)">20m — arrival signal</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:4px;margin-left:18px">
+            <div style="width:28px;height:6px;border-radius:3px;background:var(--teal)"></div>
+            <div style="width:6px;height:6px;border-radius:3px;background:transparent"></div>
+            <div style="width:28px;height:6px;border-radius:3px;background:var(--teal)"></div>
+            <div style="width:6px;height:6px;border-radius:3px;background:transparent"></div>
+            <div style="width:28px;height:6px;border-radius:3px;background:var(--teal)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voice feature -->
+      <div class="feature-card">
+        <div class="feature-icon">🎙</div>
+        <h3>Staff Voice on Arrival</h3>
+        <p style="margin-bottom:16px">Web Audio API plays a 20-second voice note — recorded by the actual staff member — the moment the guest arrives. Her voice. Her words. Her place.</p>
+        <div style="background:var(--bg);padding:14px;border-radius:2px;display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#B45309,#92400E);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0">M</div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:var(--black)">Maria · Head Concierge</div>
+            <div style="display:flex;align-items:center;gap:2px;margin-top:6px">
+              <div style="width:3px;height:10px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:16px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:8px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:20px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:12px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:18px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:9px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:14px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:11px;border-radius:2px;background:var(--amber-b)"></div>
+              <div style="width:3px;height:7px;border-radius:2px;background:var(--border)"></div>
+              <div style="width:3px;height:14px;border-radius:2px;background:var(--border)"></div>
+              <div style="width:3px;height:10px;border-radius:2px;background:var(--border)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fog of war -->
+      <div class="feature-card">
+        <div class="feature-icon">🗺</div>
+        <h3>Fog of War Map</h3>
+        <p style="margin-bottom:16px">The city starts hidden. Every mission completed clears a radius of fog revealing new areas. The map is not information — it is the game board.</p>
+        <div class="map-visual" style="height:110px;border-radius:2px;margin:0">
+          <div class="map-bg"></div>
+          <div class="map-fog"></div>
+          <div class="map-pin found" style="left:32%;top:55%"></div>
+          <div class="map-pin active" style="left:55%;top:38%"></div>
+          <div class="map-pin locked" style="left:75%;top:62%"></div>
+          <div style="position:absolute;bottom:8px;right:8px;font-size:10px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:8px">
+            <span style="color:#1D9E75">● Found</span>
+            <span style="color:#F59E0B">● Active</span>
+            <span style="color:#57534E">● Hidden</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 5: STAFF AS CHARACTERS           -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="split">
+    <div class="split-left">
+      <div class="label">Staff Empowerment</div>
+      <h2 style="margin:12px 0 20px;font-size:34px">Your team becomes part of every guest's story.</h2>
+      <p style="margin-bottom:16px">When Maria the concierge records a 20-second voice note about her favourite Sunday morning spot, that recommendation reaches every single guest who picks up that mission.</p>
+      <p style="margin-bottom:24px;color:var(--mid)">Not just today. Every day she works at your hotel — and the knowledge stays even after she moves on.</p>
+
+      <div style="background:var(--bg);border:1px solid var(--border);padding:20px;margin-bottom:20px;border-radius:2px">
+        <div style="font-size:11px;color:var(--mid);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em">Staff see live</div>
+        <div style="font-size:36px;font-weight:700;color:var(--amber);font-family:'DM Serif Display',serif;margin-bottom:4px">47</div>
+        <div style="font-size:13px;color:var(--black);font-weight:600">guests found Maria's café this month</div>
+        <div style="font-size:12px;color:var(--mid);margin-top:4px">That is pride. That is retention. That is culture.</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+            <div style="font-size:9px;color:#fff;font-weight:700">✓</div>
+          </div>
+          <p style="font-size:13px">Personal profile with avatar, name, role, bio</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+            <div style="font-size:9px;color:#fff;font-weight:700">✓</div>
+          </div>
+          <p style="font-size:13px">Voice note recording — 20 seconds, in their own words</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+            <div style="font-size:9px;color:#fff;font-weight:700">✓</div>
+          </div>
+          <p style="font-size:13px">Live counter: how many guests found their spot</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+            <div style="font-size:9px;color:#fff;font-weight:700">✓</div>
+          </div>
+          <p style="font-size:13px">Guest thank-you messages delivered to staff</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:18px;height:18px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">
+            <div style="font-size:9px;color:#fff;font-weight:700">✓</div>
+          </div>
+          <p style="font-size:13px">Staff card collected in guest's Explorer Passport forever</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-right">
+      <div class="label" style="margin-bottom:20px">Your team</div>
+      <div class="staff-card">
+        <div class="staff-head">
+          <div class="avatar a1">M</div>
+          <div>
+            <div class="staff-name">Maria Schneider</div>
+            <div class="staff-role">Head Concierge · 8 years</div>
+          </div>
+        </div>
+        <div class="voice-bar">
+          <div class="play-btn"><div class="play-tri"></div></div>
+          <div class="wave">
+            <div class="wave-bar" style="height:8px"></div>
+            <div class="wave-bar" style="height:14px"></div>
+            <div class="wave-bar" style="height:10px"></div>
+            <div class="wave-bar" style="height:18px"></div>
+            <div class="wave-bar" style="height:12px"></div>
+            <div class="wave-bar" style="height:16px"></div>
+            <div class="wave-bar" style="height:8px"></div>
+            <div class="wave-bar" style="height:11px;background:rgba(245,158,11,.2)"></div>
+            <div class="wave-bar" style="height:14px;background:rgba(245,158,11,.2)"></div>
+            <div class="wave-bar" style="height:9px;background:rgba(245,158,11,.2)"></div>
+          </div>
+          <div style="font-size:11px;color:#A8A29E">0:18</div>
+        </div>
+        <div class="staff-quote">"My Sunday morning starts here. They've been open since 1962 and the owner still bakes everything himself from 4am..."</div>
+        <div class="found-count">✦ 47 guests found this spot</div>
+      </div>
+
+      <div class="staff-card">
+        <div class="staff-head">
+          <div class="avatar a2">K</div>
+          <div>
+            <div class="staff-name">Klaus Weber</div>
+            <div class="staff-role">Head Chef · 12 years</div>
+          </div>
+        </div>
+        <div class="voice-bar">
+          <div class="play-btn"><div class="play-tri"></div></div>
+          <div class="wave">
+            <div class="wave-bar" style="height:12px"></div>
+            <div class="wave-bar" style="height:18px"></div>
+            <div class="wave-bar" style="height:8px"></div>
+            <div class="wave-bar" style="height:14px"></div>
+            <div class="wave-bar" style="height:16px"></div>
+            <div class="wave-bar" style="height:10px"></div>
+            <div class="wave-bar" style="height:7px;background:rgba(245,158,11,.2)"></div>
+          </div>
+          <div style="font-size:11px;color:#A8A29E">0:22</div>
+        </div>
+        <div class="staff-quote">"Nobody knows this market. I've been shopping here every Thursday for ten years — the cheese stall in the back corner is the reason I became a chef."</div>
+        <div class="found-count">✦ 31 guests found this spot</div>
+      </div>
+
+      <div class="staff-card">
+        <div class="staff-head">
+          <div class="avatar a3">A</div>
+          <div>
+            <div class="staff-name">Anna Fischer</div>
+            <div class="staff-role">Bar Manager · 5 years</div>
+          </div>
+        </div>
+        <div class="staff-quote">"The rooftop looks abandoned from the street. Ring the bell twice. Tell them Anna sent you."</div>
+        <div class="found-count">✦ 19 guests found this spot</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 6: EXPLORER PASSPORT + LOYALTY  -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="pad" style="min-height:297mm">
+    <div class="label">Guest Loyalty</div>
+    <h2 style="margin:12px 0 8px">An identity that grows<br>across every stay.</h2>
+    <p class="muted" style="margin-bottom:32px">The Explorer Passport is why guests come back — not just to your hotel, but to every hotel in your chain.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:32px">
+      <div>
+        <h3 style="margin-bottom:16px;font-size:13px">Explorer Ranks</h3>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg);border:1px solid var(--border)">
+            <div style="width:10px;height:10px;border-radius:50%;background:#888780;flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--black)">Newcomer</div><div style="font-size:11px;color:var(--mid)">First steps into the city</div></div>
+            <div style="font-size:11px;color:var(--mid)">0 XP</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg);border:1px solid var(--border)">
+            <div style="width:10px;height:10px;border-radius:50%;background:#0F766E;flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--black)">Local</div><div style="font-size:11px;color:var(--mid)">You know where to go</div></div>
+            <div style="font-size:11px;color:var(--mid)">300 XP</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg);border:1px solid var(--border)">
+            <div style="width:10px;height:10px;border-radius:50%;background:#185FA5;flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--black)">Insider</div><div style="font-size:11px;color:var(--mid)">The city trusts you</div></div>
+            <div style="font-size:11px;color:var(--mid)">800 XP</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--bg);border:1px solid var(--border)">
+            <div style="width:10px;height:10px;border-radius:50%;background:#6D28D9;flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--black)">Keeper of Keys</div><div style="font-size:11px;color:var(--mid)">You open doors others cannot</div></div>
+            <div style="font-size:11px;color:var(--mid)">2000 XP</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--amber-b);border:1px solid var(--amber)">
+            <div style="width:10px;height:10px;border-radius:50%;background:#fff;flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-size:13px;font-weight:700;color:#fff">Legend</div><div style="font-size:11px;color:rgba(255,255,255,.7)">The city knows your name</div></div>
+            <div style="font-size:11px;color:rgba(255,255,255,.7)">5000 XP</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:16px;font-size:13px">Chain Passport</h3>
+        <div style="background:var(--bg);border:1px solid var(--border);padding:20px">
+          <div style="font-size:10px;color:var(--mid);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">Explorer Passport — James R.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+            <div style="border:1px solid var(--border);padding:12px;text-align:center;background:#fff;position:relative">
+              <div style="font-size:18px;margin-bottom:4px">✦</div>
+              <div style="font-size:11px;font-weight:600;color:var(--black)">Berlin</div>
+              <div style="font-size:10px;color:var(--mid)">Hotel Adlon · Mar 2024</div>
+              <div style="font-size:10px;color:var(--teal);margin-top:4px">6 spots found</div>
+            </div>
+            <div style="border:1px solid var(--border);padding:12px;text-align:center;background:#fff">
+              <div style="font-size:18px;margin-bottom:4px">✦</div>
+              <div style="font-size:11px;font-weight:600;color:var(--black)">Vienna</div>
+              <div style="font-size:10px;color:var(--mid)">Hotel Sacher · Jun 2024</div>
+              <div style="font-size:10px;color:var(--teal);margin-top:4px">4 spots found</div>
+            </div>
+            <div style="border:1px dashed var(--border);padding:12px;text-align:center;background:var(--bg)">
+              <div style="font-size:18px;margin-bottom:4px;color:var(--border)">◻</div>
+              <div style="font-size:10px;color:var(--border)">Next adventure</div>
+            </div>
+            <div style="border:1px dashed var(--border);padding:12px;text-align:center;background:var(--bg)">
+              <div style="font-size:18px;margin-bottom:4px;color:var(--border)">◻</div>
+              <div style="font-size:10px;color:var(--border)">Next adventure</div>
+            </div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);padding:10px;display:flex;align-items:center;gap:10px">
+            <div style="flex:1">
+              <div style="font-size:11px;color:var(--mid);margin-bottom:4px">Explorer rank</div>
+              <div style="font-size:14px;font-weight:700;color:#185FA5">Insider</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:11px;color:var(--mid);margin-bottom:4px">Total XP</div>
+              <div style="font-size:14px;font-weight:700;color:var(--black)">1,100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--black);padding:28px 36px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="text-align:center">
+        <div style="font-size:32px;font-weight:700;color:#FDE68A;font-family:'DM Serif Display',serif;margin-bottom:6px">↑ NPS</div>
+        <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:4px">Guest Satisfaction</div>
+        <div style="font-size:11px;color:#A8A29E">Memorable experiences drive reviews and referrals</div>
+      </div>
+      <div style="text-align:center;border-left:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08)">
+        <div style="font-size:32px;font-weight:700;color:#FDE68A;font-family:'DM Serif Display',serif;margin-bottom:6px">↑ ADR</div>
+        <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:4px">Average Daily Rate</div>
+        <div style="font-size:11px;color:#A8A29E">Premium experience justifies premium pricing</div>
+      </div>
+      <div style="text-align:center">
+        <div style="font-size:32px;font-weight:700;color:#FDE68A;font-family:'DM Serif Display',serif;margin-bottom:6px">↑ LTV</div>
+        <div style="font-size:12px;font-weight:600;color:#fff;margin-bottom:4px">Guest Lifetime Value</div>
+        <div style="font-size:11px;color:#A8A29E">Explorer Passport creates cross-stay loyalty</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 7: PRICING                       -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="pad" style="min-height:297mm">
+    <div class="label">Investment</div>
+    <h2 style="margin:12px 0 8px">Simple pricing.<br>No surprises.</h2>
+    <p class="muted" style="margin-bottom:32px">Every plan includes a hands-on onboarding session. Your first five missions are created together with our team.</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-name">Pilot</div>
+        <div class="price-num">€150</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li>1 hotel property</li>
+          <li>Up to 10 active missions</li>
+          <li>3 staff profiles</li>
+          <li>Guest QR access</li>
+          <li>Basic analytics</li>
+          <li>Email support</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Property</div>
+        <div class="price-num">€350</div>
+        <div class="price-period">per month · most popular</div>
+        <ul class="price-features">
+          <li>1 hotel property</li>
+          <li>Unlimited missions</li>
+          <li>Unlimited staff profiles</li>
+          <li>Full Explorer Passport</li>
+          <li>Photo completion + gallery</li>
+          <li>Voice note management</li>
+          <li>Priority support</li>
+          <li>Onboarding included</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Group</div>
+        <div class="price-num" style="font-size:36px">Custom</div>
+        <div class="price-period">contact us</div>
+        <ul class="price-features">
+          <li>Multiple properties</li>
+          <li>Shared Explorer identity</li>
+          <li>Group dashboard</li>
+          <li>Chain Passport stamps</li>
+          <li>White label option</li>
+          <li>Dedicated account manager</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:28px;padding:28px;border:1px solid var(--amber-b);background:var(--amber-l)">
+      <div style="font-size:11px;color:var(--amber);text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px;font-weight:700">Pilot offer</div>
+      <div style="font-size:18px;font-weight:600;color:var(--black);margin-bottom:8px">Start with one month free.</div>
+      <p style="font-size:13px;color:var(--stone)">We set up your first hotel, create the first five missions together with your team, and deploy everything. You see guests using it before you commit to a subscription. If it doesn't work for your hotel, you owe us nothing.</p>
+    </div>
+
+    <div style="margin-top:32px">
+      <h3 style="margin-bottom:16px;font-size:13px">Live in 5 steps</h3>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border)">
+        <div style="background:#fff;padding:16px 12px;text-align:center">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin:0 auto 8px">1</div>
+          <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:4px">Kick-off call</div>
+          <div style="font-size:10px;color:var(--mid)">60 min</div>
+        </div>
+        <div style="background:#fff;padding:16px 12px;text-align:center">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin:0 auto 8px">2</div>
+          <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:4px">Staff briefing</div>
+          <div style="font-size:10px;color:var(--mid)">1 hour, any format</div>
+        </div>
+        <div style="background:#fff;padding:16px 12px;text-align:center">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin:0 auto 8px">3</div>
+          <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:4px">Mission build</div>
+          <div style="font-size:10px;color:var(--mid)">3–5 days</div>
+        </div>
+        <div style="background:#fff;padding:16px 12px;text-align:center">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--black);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin:0 auto 8px">4</div>
+          <div style="font-size:11px;font-weight:600;color:var(--black);margin-bottom:4px">QR codes printed</div>
+          <div style="font-size:10px;color:var(--mid)">Print-ready files</div>
+        </div>
+        <div style="background:var(--amber-b);padding:16px 12px;text-align:center">
+          <div style="width:32px;height:32px;border-radius:50%;background:#fff;color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin:0 auto 8px">5</div>
+          <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:4px">Go live ✦</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.7)">First guest explores</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- PAGE 8: CLOSING                       -->
+<!-- ══════════════════════════════════════ -->
+<div class="page">
+  <div class="closing">
+    <div class="cover-grid"></div>
+    <div class="closing-key">✦</div>
+    <h2 class="serif" style="font-size:52px;margin-bottom:16px">The city unlocks<br>as you move.</h2>
+    <div class="closing-sub">Secret spots, curated by your host.</div>
+    <div class="closing-rule"></div>
+
+    <!-- Mini passport visual -->
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:24px 32px;margin-bottom:48px;position:relative;z-index:2;max-width:420px">
+      <div style="font-size:11px;color:#A8A29E;margin-bottom:16px;letter-spacing:.1em;text-transform:uppercase">What your guests take home</div>
+      <div style="display:flex;gap:20px;justify-content:center">
+        <div style="text-align:center">
+          <div style="font-size:28px;color:#FDE68A">✦</div>
+          <div style="font-size:11px;color:#D6D3D1;margin-top:4px">Memories</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:28px;color:#6EE7B7">✦</div>
+          <div style="font-size:11px;color:#D6D3D1;margin-top:4px">Stories</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:28px;color:#93C5FD">✦</div>
+          <div style="font-size:11px;color:#D6D3D1;margin-top:4px">Explorer rank</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:28px;color:#F9A8D4">✦</div>
+          <div style="font-size:11px;color:#D6D3D1;margin-top:4px">Your hotel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-contact">
+      <div style="margin-bottom:8px;color:#D6D3D1">Ready to become your guests' favourite part of the city?</div>
+      <a href="mailto:hello@insiderkeys.com" style="color:#FDE68A;font-size:18px;font-weight:600">hello@insiderkeys.com</a>
+      <div style="margin-top:6px;color:#57534E;font-size:13px">insiderkeys.com</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

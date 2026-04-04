@@ -76,7 +76,7 @@ export default function Hero() {
         >
           {[
             { num: "15+", label: "Years Hospitality" },
-            { num: "8", label: "Active Ventures" },
+            { num: "7", label: "Active Ventures" },
             { num: "220", label: "Staff Led" },
             { num: "G7", label: "Summit Events" },
           ].map((stat) => (

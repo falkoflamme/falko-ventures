@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 
 const timeline = [
   { year: "2006", role: "Auszubildender", place: "Rocco Forte · Villa Kennedy Frankfurt" },
@@ -41,16 +40,21 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="relative aspect-[3/4] max-w-sm overflow-hidden">
+            <div className="relative aspect-[3/4] max-w-sm overflow-hidden bg-[var(--surface)] flex items-center justify-center">
               {/* Gold frame offset */}
               <div className="absolute -top-3 -left-3 w-full h-full border border-[var(--gold)] opacity-30" />
-              <Image
-                src="/images/falko.jpg"
-                alt="Falko Flamme"
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                priority
-              />
+              {/* Inner corner accents */}
+              <div className="absolute top-6 left-6 w-8 h-8 border-t border-l border-[var(--gold)] opacity-60" />
+              <div className="absolute bottom-6 right-6 w-8 h-8 border-b border-r border-[var(--gold)] opacity-60" />
+              {/* Radial glow */}
+              <div className="absolute inset-0 opacity-10" style={{ background: "radial-gradient(circle at 50% 40%, var(--gold), transparent 65%)" }} />
+              {/* Initials */}
+              <div className="relative z-10 text-center">
+                <div className="font-display text-[8rem] font-light text-[var(--gold)] leading-none opacity-20 select-none">FF</div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="font-display text-6xl font-light text-[var(--gold)] opacity-80 tracking-widest">FF</div>
+                </div>
+              </div>
               {/* Gradient overlay bottom */}
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent" />
             </div>
