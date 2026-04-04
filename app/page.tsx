@@ -6,6 +6,7 @@ import Ventures from "@/components/features/Ventures";
 import SocialProof from "@/components/features/SocialProof";
 import Numbers from "@/components/features/Numbers";
 import Calculator from "@/components/features/Calculator";
+import ShippedFeed from "@/components/features/ShippedFeed";
 import Pipeline from "@/components/features/Pipeline";
 import Vision from "@/components/features/Vision";
 import Contact from "@/components/features/Contact";
@@ -22,6 +23,7 @@ export default function Home() {
       <SocialProof />
       <Numbers />
       <Calculator />
+      <ShippedFeed />
       <Pipeline />
       <Vision />
       <Contact />

@@ -183,15 +183,24 @@ export default function Ventures() {
               {/* Header row */}
               <div className="flex items-start justify-between mb-4">
                 <span className="font-display text-xs tracking-[0.3em] text-[var(--muted)]">{v.id}</span>
-                <span
-                  className="text-[8px] tracking-[0.2em] uppercase px-2.5 py-1"
-                  style={{
-                    background: statusColors[v.status]?.bg || "rgba(255,255,255,0.05)",
-                    color: statusColors[v.status]?.text || "#888",
-                  }}
-                >
-                  {v.status}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  {v.status === "Live" ? (
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-60" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4ade80]" />
+                    </span>
+                  ) : v.status === "Building" ? (
+                    <span className="h-2 w-2 rounded-full bg-[var(--gold)]" />
+                  ) : (
+                    <span className="h-2 w-2 rounded-full bg-[var(--muted)] opacity-40" />
+                  )}
+                  <span
+                    className="text-[8px] tracking-[0.2em] uppercase"
+                    style={{ color: statusColors[v.status]?.text || "#888" }}
+                  >
+                    {v.status}
+                  </span>
+                </div>
               </div>
 
               {/* Name */}

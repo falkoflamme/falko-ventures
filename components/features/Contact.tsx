@@ -88,9 +88,28 @@ export default function Contact() {
               transition={{ duration: 0.7, delay: 0.35 }}
               className="space-y-4"
             >
+              {/* Investor slots */}
+              <div className="p-5 border border-[var(--gold)] relative overflow-hidden mb-2">
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
+                <div className="flex items-center gap-3 mb-3">
+                  {[1,2,3].map((i) => (
+                    <div key={i} className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--gold)] opacity-50" style={{ animationDelay: `${i * 0.3}s` }} />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--gold)]" />
+                    </div>
+                  ))}
+                  {[4,5].map((i) => (
+                    <div key={i} className="h-2.5 w-2.5 rounded-full border border-[var(--border)]" />
+                  ))}
+                </div>
+                <div className="text-xs text-[var(--foreground)] font-light leading-snug">
+                  <span className="text-[var(--gold)] font-medium">3 of 5</span> strategic partner slots open for 2026
+                </div>
+              </div>
+
               {[
                 { label: "Based in", value: "Frankfurt, Germany" },
-                { label: "Building since", value: "2008" },
+                { label: "Building since", value: "2018" },
                 { label: "Looking for", value: "Investors · Co-Founders · Partners" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4">
