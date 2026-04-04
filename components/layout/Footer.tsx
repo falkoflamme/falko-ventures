@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "AI Thesis", href: "#ai-thesis" },
   { label: "Ventures", href: "#ventures" },
-  { label: "Live Products", href: "#pitch-decks" },
+  { label: "Pipeline", href: "#pipeline" },
   { label: "Vision", href: "#vision" },
   { label: "Contact", href: "#contact" },
 ];

@@ -1,9 +1,11 @@
 import Nav from "@/components/layout/Nav";
 import Hero from "@/components/features/Hero";
 import About from "@/components/features/About";
+import AIThesis from "@/components/features/AIThesis";
 import Ventures from "@/components/features/Ventures";
-import PitchDecks from "@/components/features/PitchDecks";
 import SocialProof from "@/components/features/SocialProof";
+import Numbers from "@/components/features/Numbers";
+import Pipeline from "@/components/features/Pipeline";
 import Vision from "@/components/features/Vision";
 import Contact from "@/components/features/Contact";
 import Footer from "@/components/layout/Footer";
@@ -14,9 +16,11 @@ export default function Home() {
       <Nav />
       <Hero />
       <About />
+      <AIThesis />
       <Ventures />
-      <PitchDecks />
       <SocialProof />
+      <Numbers />
+      <Pipeline />
       <Vision />
       <Contact />
       <Footer />

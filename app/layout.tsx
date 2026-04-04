@@ -16,12 +16,15 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Falko Flamme — Venture Builder",
-  description: "Serial founder. Luxury hospitality veteran. AI-powered venture builder. Building the next generation of intelligent platforms.",
+  title: "Falko Flamme — Venture Builder | 6 AI-Powered Ventures | Frankfurt",
+  description:
+    "Serial Founder · 15+ Jahre Luxury Hospitality · 6 live Ventures · Gebaut mit AI · ~€50/Monat Burn Rate. Portfolio, Pitch Decks und Vision.",
   openGraph: {
-    title: "Falko Flamme — Venture Builder",
-    description: "Serial founder. AI-powered venture builder. Frankfurt.",
+    title: "Falko Flamme — Venture Builder | 6 AI-Powered Ventures",
+    description:
+      "Serial Founder · 15+ Jahre Luxury Hospitality · 6 live Ventures · Gebaut mit AI · ~€50/Monat Burn Rate.",
     type: "website",
+    images: ["/images/Falko_Flamme_Visionary.JPG"],
   },
 };
 

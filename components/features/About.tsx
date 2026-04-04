@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const timeline = [
   { year: "2006", role: "Auszubildender", place: "Rocco Forte · Villa Kennedy Frankfurt" },
@@ -12,7 +13,7 @@ const timeline = [
   { year: "2019", role: "Director F&B", place: "Sofitel Macau · Ponte 16" },
   { year: "2021", role: "Director Operations", place: "Kloster Eberbach · Germany" },
   { year: "2024", role: "Hotel Manager", place: "Ruby Hotels · Frankfurt" },
-  { year: "2025", role: "Head of Public Catering", place: "Supreme Sports Hospitality · Deutsche Bank Park" },
+  { year: "2025", role: "Head of Public Catering", place: "Deutsche Bank Park · Frankfurt" },
 ];
 
 const achievements = [
@@ -27,12 +28,12 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" ref={ref} className="relative py-40 px-6 overflow-hidden">
-      <div className="gold-line max-w-7xl mx-auto mb-24" />
+    <section id="about" ref={ref} className="relative py-32 px-6 overflow-hidden">
+      <div className="gold-line max-w-7xl mx-auto mb-20" />
 
       <div className="max-w-7xl mx-auto">
         {/* Top: Photo + Bio */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start mb-24">
+        <div className="grid lg:grid-cols-2 gap-16 items-start mb-20">
           {/* Photo */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -40,28 +41,27 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="relative aspect-[3/4] max-w-sm overflow-hidden bg-[var(--surface)] flex items-center justify-center">
+            <div className="relative overflow-hidden max-w-sm" style={{ aspectRatio: "3/4" }}>
               {/* Gold frame offset */}
-              <div className="absolute -top-3 -left-3 w-full h-full border border-[var(--gold)] opacity-30" />
-              {/* Inner corner accents */}
-              <div className="absolute top-6 left-6 w-8 h-8 border-t border-l border-[var(--gold)] opacity-60" />
-              <div className="absolute bottom-6 right-6 w-8 h-8 border-b border-r border-[var(--gold)] opacity-60" />
-              {/* Radial glow */}
-              <div className="absolute inset-0 opacity-10" style={{ background: "radial-gradient(circle at 50% 40%, var(--gold), transparent 65%)" }} />
-              {/* Initials */}
-              <div className="relative z-10 text-center">
-                <div className="font-display text-[8rem] font-light text-[var(--gold)] leading-none opacity-20 select-none">FF</div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="font-display text-6xl font-light text-[var(--gold)] opacity-80 tracking-widest">FF</div>
-                </div>
-              </div>
-              {/* Gradient overlay bottom */}
-              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--background)] to-transparent" />
+              <div className="absolute -top-3 -left-3 w-full h-full border border-[var(--gold)] opacity-20 z-10 pointer-events-none" />
+              <div className="absolute top-5 left-5 w-8 h-8 border-t border-l border-[var(--gold)] opacity-60 z-10 pointer-events-none" />
+              <div className="absolute bottom-5 right-5 w-8 h-8 border-b border-r border-[var(--gold)] opacity-60 z-10 pointer-events-none" />
+
+              <Image
+                src="/images/Falko_Flamme1.JPG"
+                alt="Falko Flamme"
+                fill
+                className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              {/* Bottom gradient */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[var(--background)] to-transparent z-10" />
             </div>
+
             {/* Name tag */}
-            <div className="absolute bottom-8 left-4 right-4">
-              <div className="text-[10px] tracking-[0.4em] uppercase text-[var(--gold)]">Falko Flamme</div>
-              <div className="text-xs text-[var(--muted)] tracking-wider">Frankfurt · Germany</div>
+            <div className="absolute bottom-6 left-4 z-20">
+              <div className="text-[9px] tracking-[0.5em] uppercase text-[var(--gold)]">Falko Flamme</div>
+              <div className="text-[10px] text-[var(--muted)] tracking-wider">Frankfurt · Germany</div>
             </div>
           </motion.div>
 
@@ -92,26 +92,22 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.25 }}
-              className="space-y-4 text-[var(--muted)] leading-relaxed text-base mb-8"
+              className="space-y-4 text-[var(--muted)] leading-relaxed text-sm mb-10"
             >
               <p>
-                Falko Flamme started his career at the Rocco Forte Villa Kennedy in Frankfurt — one of Germany&apos;s
-                finest five-star hotels. He then spent 12 years building a career across Asia&apos;s top luxury
-                hospitality brands: JW Marriott, The Peninsula Bangkok, Sofitel Bangkok, and Sofitel Macau.
+                Falko Flamme hat 15 Jahre lang die Luxushotellerie von innen aufgebaut — Villa Kennedy
+                Frankfurt, JW Marriott Thailand, The Peninsula Bangkok (220 Mitarbeiter), Sofitel Macau,
+                Kloster Eberbach (G7 Summit), Ruby Hotels, Deutsche Bank Park.
               </p>
               <p>
-                In 2018, while leading a 220-person F&B team at The Peninsula, he founded GrabCasual —
-                a tech startup in Bangkok that digitized casual workforce management for hospitality.
-                That was the moment Falko understood: domain expertise + technology = unfair advantage.
+                2018, während er in Bangkok ein 220-köpfiges F&B Team führte, gründete er GrabCasual —
+                ein Tech-Startup das Hospitality-Staffing digitalisierte. Das war der Moment: Domain
+                Expertise + Technologie = unfairer Vorteil.
               </p>
               <p>
-                Back in Germany, he ran large-scale event operations at Kloster Eberbach (including the
-                G7 Interior Ministers Summit), relaunched a rooftop event series at Ruby Hotels generating
-                €20K+ per night, and now leads public catering at Deutsche Bank Park Frankfurt.
-              </p>
-              <p>
-                He is now channeling that experience into a portfolio of AI-powered ventures — each one
-                rooted in industries he has spent years operating in.
+                Heute baut er mit AI als Co-Builder ein Portfolio von 6 Ventures gleichzeitig — jedes in
+                einem Markt den er von innen kennt. Mit einer Burn Rate von ~€50/Monat. Ohne Team.
+                Ohne Office. Ohne Bullshit.
               </p>
             </motion.div>
 
@@ -144,9 +140,7 @@ export default function About() {
           </div>
 
           <div className="relative">
-            {/* Vertical line */}
             <div className="absolute left-[3.5rem] top-0 bottom-0 w-px bg-[var(--border)]" />
-
             <div className="space-y-0">
               {timeline.map((item, i) => (
                 <motion.div

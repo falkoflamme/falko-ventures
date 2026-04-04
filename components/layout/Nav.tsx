@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
   { label: "About", href: "#about" },
+  { label: "AI Thesis", href: "#ai-thesis" },
   { label: "Ventures", href: "#ventures" },
-  { label: "Products", href: "#pitch-decks" },
-  { label: "Vision", href: "#vision" },
+  { label: "Pipeline", href: "#pipeline" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -65,7 +65,7 @@ export default function Nav() {
               href="#ventures"
               className="text-xs tracking-[0.2em] uppercase px-5 py-2 border border-[var(--gold)] text-[var(--gold)] hover:bg-[var(--gold)] hover:text-black transition-all duration-300"
             >
-              Pitch Decks
+              Pitch Decks →
             </a>
           </div>
 
