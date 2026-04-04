@@ -3,8 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 
-// → formspree.io/new → kostenlos registrieren → Form erstellen → URL hier eintragen
-const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_URL = "https://formspree.io/f/flamme.falko";
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
@@ -147,7 +146,7 @@ export default function Contact() {
                 {error && (
                   <p className="text-xs text-red-400 tracking-wide">
                     Something went wrong. Email directly:{" "}
-                    <a href="mailto:falkic.flame@gmail.com" className="underline">falkic.flame@gmail.com</a>
+                    <a href="mailto:flamme.falko@gmail.com" className="underline">flamme.falko@gmail.com</a>
                   </p>
                 )}
 

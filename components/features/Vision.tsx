@@ -3,26 +3,21 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const manifesto = [
+const roadmap = [
   {
-    num: "I",
-    title: "Domain first. Code second.",
-    body: "Every Flamme venture starts with a decade of lived experience in that market. We don't study industries — we built careers in them.",
+    year: "2026",
+    title: "Proof of Concept",
+    description: "Erste Nutzer, erste Erlöse. Jedes Venture validiert seinen Kernmarkt. Gebaut von einem Menschen — bewiesen von echten Kunden.",
   },
   {
-    num: "II",
-    title: "The AI advantage.",
-    body: "AI is not a feature. It is the force multiplier that allows one founder to move at the speed of a team of twenty. We build AI-native from day one.",
+    year: "2027",
+    title: "Venture Studio Formation",
+    description: "Top 2–3 Ventures fokussiert skalieren. Erste strategische Hires. Das Studio-Modell formalisieren: Falko als Architekt, AI als Team.",
   },
   {
-    num: "III",
-    title: "Premium or nothing.",
-    body: "There is no middle market worth chasing. We build for people who value quality and are willing to pay for it. Design is strategy.",
-  },
-  {
-    num: "IV",
-    title: "Ship fast. Iterate honestly.",
-    body: "We launch early, learn fast, and kill what doesn't work without sentiment. Velocity and integrity are not opposites.",
+    year: "2028+",
+    title: "Scale & Exit",
+    description: "EU-Expansion. Strategische Partner. Erste Exits oder Profitabilität. Das Playbook repliziert auf neue Märkte und neue Ventures.",
   },
 ];
 
@@ -33,17 +28,16 @@ export default function Vision() {
   const x = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <section id="vision" ref={ref} className="relative py-40 overflow-hidden">
-      {/* Gold line */}
+    <section id="vision" ref={ref} className="relative py-32 overflow-hidden">
       <div className="px-6">
-        <div className="gold-line max-w-7xl mx-auto mb-24" />
+        <div className="gold-line max-w-7xl mx-auto mb-20" />
       </div>
 
       {/* Moving text marquee */}
-      <div className="relative mb-24 overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-16 whitespace-nowrap py-6 opacity-[0.04]">
+      <div className="relative mb-20 overflow-hidden">
+        <motion.div style={{ x }} className="flex gap-16 whitespace-nowrap py-4 opacity-[0.03]">
           {Array(6).fill("VISION · VELOCITY · VENTURES · VALUE · ").map((text, i) => (
-            <span key={i} className="font-display text-[10rem] font-light tracking-tight text-[var(--foreground)]">
+            <span key={i} className="font-display text-[8rem] font-light tracking-tight text-[var(--foreground)]">
               {text}
             </span>
           ))}
@@ -53,63 +47,74 @@ export default function Vision() {
       <div className="px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="grid lg:grid-cols-2 gap-10 mb-24">
-            <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-                className="flex items-center gap-3 mb-8"
-              >
-                <div className="w-8 h-px bg-[var(--gold)]" />
-                <span className="text-xs tracking-[0.4em] uppercase text-[var(--gold)]">The Manifesto</span>
-              </motion.div>
+          <div className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div className="w-8 h-px bg-[var(--gold)]" />
+              <span className="text-xs tracking-[0.4em] uppercase text-[var(--gold)]">The Vision</span>
+            </motion.div>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 40 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display text-6xl md:text-7xl font-light leading-[1.05]"
-              >
-                How we build.
-                <br />
-                <span className="italic text-gold-gradient">Why it works.</span>
-              </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-6xl md:text-7xl font-light leading-[1.05]"
+            >
+              From Builder
+              <br />
+              <span className="italic text-gold-gradient">to Studio.</span>
+            </motion.h2>
+          </div>
+
+          {/* Roadmap timeline */}
+          <div className="relative mb-20">
+            {/* Connecting line */}
+            <div className="absolute left-0 top-8 bottom-8 w-px bg-[var(--border)] hidden md:block" style={{ left: "5.5rem" }} />
+
+            <div className="space-y-4">
+              {roadmap.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 0.2 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="group flex gap-8 items-start p-6 hover:bg-[var(--surface)] transition-colors duration-400 -mx-6 px-6"
+                >
+                  {/* Year */}
+                  <div className="flex flex-col items-center shrink-0 w-16">
+                    <div className="font-display text-2xl font-light text-[var(--gold)] group-hover:text-[var(--gold-light)] transition-colors duration-300">
+                      {item.year}
+                    </div>
+                    <div className="w-3 h-3 rounded-full border-2 border-[var(--gold)] bg-[var(--background)] mt-3 group-hover:bg-[var(--gold)] transition-colors duration-300 relative z-10" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 pt-1">
+                    <h3 className="font-display text-2xl font-light mb-2 group-hover:text-[var(--gold)] transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-[var(--muted)] leading-relaxed max-w-lg">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
 
-          {/* Manifesto cards */}
-          <div className="grid md:grid-cols-2 gap-px bg-[var(--border)]">
-            {manifesto.map((item, i) => (
-              <motion.div
-                key={item.num}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative p-10 bg-[var(--background)] group hover:bg-[var(--surface)] transition-colors duration-500"
-              >
-                <div className="font-display text-6xl font-light text-[var(--gold)] opacity-30 mb-6 group-hover:opacity-60 transition-opacity duration-500">
-                  {item.num}
-                </div>
-                <h3 className="font-display text-2xl font-light mb-4 group-hover:text-[var(--gold)] transition-colors duration-400">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">{item.body}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Quote */}
+          {/* Closing quote */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-24 text-center max-w-3xl mx-auto"
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="text-center max-w-3xl mx-auto"
           >
             <div className="font-display text-3xl md:text-4xl lg:text-5xl italic font-light text-[var(--foreground)] leading-[1.3] mb-6">
               &ldquo;The best ventures are built by people who couldn&apos;t find what they needed — so they built it themselves.&rdquo;
             </div>
-            <div className="text-[10px] tracking-[0.4em] uppercase text-[var(--gold)]">Falko Flamme</div>
+            <div className="text-[10px] tracking-[0.4em] uppercase text-[var(--gold)]">— Falko Flamme</div>
           </motion.div>
         </div>
       </div>
